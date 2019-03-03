@@ -9,9 +9,24 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isAuthenticated: false
+    };
+  }
+
+  userHasAuthenticated = authenticated => {
+    this.setState({ isAuthenticated: authenticated });
+  };
   render() {
+    const childProps = {
+      isAuthenticated: this.state.isAuthenticated,
+      userHasAuthenticated: this.userHasAuthenticated
+    };
     return (
-      <Router>
+      <Router childProps={childProps}>
         <div className="App">
           <Navbar />
           <Route exact path="/" component={Landing} />
