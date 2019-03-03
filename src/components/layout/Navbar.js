@@ -1,7 +1,16 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+  }
+  handleLogout = async event => {
+    await Auth.signOut();
+    // this.props.userHasAuthenticated(false);
+    this.setState({ isAuthenticated: false });
+  };
   render() {
     return (
       <nav className="navbar navbar-expand-sm mb-4">
@@ -41,9 +50,9 @@ class Navbar extends Component {
               </li> */}
               {this.props.isAuthenticated ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/logout">
+                  <a className="nav-link" onClick={this.handleLogout}>
                     Logout
-                  </Link>
+                  </a>
                 </li>
               ) : (
                 <Fragment>

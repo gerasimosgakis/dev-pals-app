@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 import "./App.scss";
 import Routes from "./Routes";
@@ -12,32 +13,46 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      isAuthenticating: true
     };
+  }
+
+  async componentDidMount() {
+    try {
+      await Auth.currentSession();
+      this.userHasAuthenticated(true);
+    } catch (err) {
+      if (err !== "No current user") {
+        alert(err);
+      }
+    }
+
+    this.setState({ isAuthenticating: false });
   }
 
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
   };
-  handleLogout = event => {
-    this.userHasAuthenticated(false);
-  };
+
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated
     };
     return (
-      <div className="App">
-        <Navbar isAuthenticated={this.state.isAuthenticated} />
-        <Route exact path="/" component={Landing} />
-        <div className="container">
-          {/* <Route exact path="/register" component={Register} />
+      !this.state.isAuthenticating && (
+        <div className="App">
+          <Navbar isAuthenticated={this.state.isAuthenticated} />
+          <Route exact path="/" component={Landing} />
+          <div className="container">
+            {/* <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} /> */}
-          <Routes childProps={childProps} />
+            <Routes childProps={childProps} />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      )
     );
   }
 }

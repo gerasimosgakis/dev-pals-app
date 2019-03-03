@@ -6,12 +6,17 @@ img {
   margin-bottom: -80px;
 }
 
-.navbar {
-  background: #f98866;
-  a {
-    text-decoration: none;
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #454545;
+  &:hover {
     color: #454545;
   }
+}
+
+.navbar {
+  background: #f98866;
 }
 
 .landing {
