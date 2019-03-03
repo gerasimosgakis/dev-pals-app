@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 class Navbar extends Component {
@@ -7,7 +7,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-sm mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            DevPals
+            DevPals {this.props.isAuthenticated}
           </Link>
           <button
             className="navbar-toggler"
@@ -29,7 +29,7 @@ class Navbar extends Component {
             </ul>
 
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/register">
                   Sign Up
                 </Link>
@@ -38,7 +38,27 @@ class Navbar extends Component {
                 <Link className="nav-link" to="/login">
                   Login
                 </Link>
-              </li>
+              </li> */}
+              {this.props.isAuthenticated ? (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/logout">
+                    Logout
+                  </Link>
+                </li>
+              ) : (
+                <Fragment>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/register">
+                      Sign Up
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                </Fragment>
+              )}
             </ul>
           </div>
         </div>

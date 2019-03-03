@@ -6,8 +6,6 @@ import Routes from "./Routes";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +19,9 @@ class App extends Component {
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
   };
+  handleLogout = event => {
+    this.userHasAuthenticated(false);
+  };
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
@@ -28,12 +29,12 @@ class App extends Component {
     };
     return (
       <div className="App">
-        <Navbar />
+        <Navbar isAuthenticated={this.state.isAuthenticated} />
         <Route exact path="/" component={Landing} />
         <div className="container">
           {/* <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} /> */}
-          <Routes />
+          <Routes childProps={childProps} />
         </div>
         <Footer />
       </div>
