@@ -44,7 +44,6 @@ class App extends Component {
       !this.state.isAuthenticating && (
         <div className="App">
           <Navbar isAuthenticated={this.state.isAuthenticated} />
-          <Route exact path="/" component={Landing} />
           <div className="container">
             {/* <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} /> */}

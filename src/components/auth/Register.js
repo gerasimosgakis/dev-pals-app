@@ -10,6 +10,7 @@ import {
   FormControl,
   ControlLabel
 } from "react-bootstrap";
+import { Auth } from "aws-amplify";
 
 class Register extends Component {
   constructor() {
@@ -39,7 +40,7 @@ class Register extends Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.id]: e.target.value });
   };
 
   onSubmit = async e => {
@@ -47,7 +48,27 @@ class Register extends Component {
 
     this.setState({ isLoading: true });
 
-    this.setState({ newUser: "test" });
+    try {
+      const newUser = await Auth.signUp({
+        username: this.state.email,
+        password: this.state.password
+      });
+      this.setState({
+        newUser
+      });
+    } catch (err) {
+      console.log(err);
+      if (err.code === "UsernameExistsException") {
+        await Auth.resendSignUp(this.state.email);
+        const newUser = {
+          username: this.state.email,
+          password: this.state.password
+        };
+        this.setState({
+          newUser
+        });
+      }
+    }
 
     this.setState({ isLoading: false });
   };
@@ -56,6 +77,17 @@ class Register extends Component {
     e.preventDefault();
 
     this.setState({ isLoading: true });
+
+    try {
+      await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
+      await Auth.signIn(this.state.email, this.state.password);
+
+      this.props.userHasAuthenticated(true);
+      this.props.history.push("/");
+    } catch (err) {
+      alert(err.message);
+      this.setState({ isLoading: false });
+    }
   };
 
   renderConfirmationForm() {
@@ -88,7 +120,7 @@ class Register extends Component {
   renderForm() {
     return (
       <form onSubmit={this.onSubmit}>
-        <FormGroup controlId="email" bsSize="large">
+        <FormGroup controlId="email">
           <ControlLabel>Email</ControlLabel>
           <FormControl
             autoFocus
@@ -97,7 +129,7 @@ class Register extends Component {
             onChange={this.onChange}
           />
         </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
+        <FormGroup controlId="password">
           <ControlLabel>Password</ControlLabel>
           <FormControl
             value={this.state.password}
@@ -105,7 +137,7 @@ class Register extends Component {
             type="password"
           />
         </FormGroup>
-        <FormGroup controlId="confirmPassword" bsSize="large">
+        <FormGroup controlId="confirmPassword">
           <ControlLabel>Confirm Password</ControlLabel>
           <FormControl
             value={this.state.confirmPassword}
