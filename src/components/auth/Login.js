@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Auth } from "aws-amplify";
 
 class Login extends Component {
   constructor() {
@@ -14,14 +15,14 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    console.log(user);
+    try {
+      await Auth.signIn(this.state.email, this.state.password);
+      alert("Logged in");
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   render() {
