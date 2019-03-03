@@ -1,33 +1,131 @@
 import React, { Component } from "react";
+// import Bootstrap from "react-bootstrap";
+// import ControlLabel from "react-bootstrap/ControlLabel";
+// import HelpBlock from "react-bootstrap/HelpBlock";
+// import FormGroup from "react-bootstrap/FormGroup";
+// import FormControl from "react-bootstrap/FormControl";
+import {
+  HelpBlock,
+  FormGroup,
+  FormControl,
+  ControlLabel
+} from "react-bootstrap";
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
+      isLoading: false,
       name: "",
       email: "",
       password: "",
-      password2: "",
+      confirmPassword: "",
+      confirmationCode: "",
+      newUser: null,
       errors: {}
     };
+  }
+
+  validateForm() {
+    return (
+      this.state.email.length > 0 &&
+      this.state.password.length > 0 &&
+      this.state.password === this.state.confirmPassword
+    );
+  }
+
+  validateConfirmationForm() {
+    return this.state.confirmationCode.length > 0;
   }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
 
-    const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
-    };
+    this.setState({ isLoading: true });
 
-    console.log(newUser);
+    this.setState({ newUser: "test" });
+
+    this.setState({ isLoading: false });
   };
+
+  onConfirmationSubmit = async e => {
+    e.preventDefault();
+
+    this.setState({ isLoading: true });
+  };
+
+  renderConfirmationForm() {
+    return (
+      <form onSubmit={this.onConfirmationSubmit}>
+        <FormGroup controlId="confirmationCode" beSize="large">
+          <ControlLabel>Confirmation Code</ControlLabel>
+          <FormControl
+            autoFocus
+            type="tel"
+            value={this.state.confirmationCode}
+            onChange={this.onChange}
+          />
+          <HelpBlock>Please check your email for the code.</HelpBlock>
+        </FormGroup>
+        {/* <LoaderButton
+          block
+          beSize="large"
+          disabled={!this.validateConfirmationForm()}
+          type="submit"
+          isLoading={this.state.isLoading}
+          text="Verify"
+          loadingText="Verifying..."
+        /> */}
+        <input type="submit" className="btn btn-info btn-block mt-4" />
+      </form>
+    );
+  }
+
+  renderForm() {
+    return (
+      <form onSubmit={this.onSubmit}>
+        <FormGroup controlId="email" bsSize="large">
+          <ControlLabel>Email</ControlLabel>
+          <FormControl
+            autoFocus
+            type="email"
+            value={this.state.email}
+            onChange={this.onChange}
+          />
+        </FormGroup>
+        <FormGroup controlId="password" bsSize="large">
+          <ControlLabel>Password</ControlLabel>
+          <FormControl
+            value={this.state.password}
+            onChange={this.onChange}
+            type="password"
+          />
+        </FormGroup>
+        <FormGroup controlId="confirmPassword" bsSize="large">
+          <ControlLabel>Confirm Password</ControlLabel>
+          <FormControl
+            value={this.state.confirmPassword}
+            onChange={this.onChange}
+            type="password"
+          />
+        </FormGroup>
+        {/* <LoaderButton
+          block
+          bsSize="large"
+          disabled={!this.validateForm()}
+          type="submit"
+          isLoading={this.state.isLoading}
+          text="Signup"
+          loadingText="Signing up…"
+        /> */}
+        <input type="submit" className="btn btn-info btn-block mt-4" />
+      </form>
+    );
+  }
 
   render() {
     return (
@@ -37,7 +135,7 @@ class Register extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your DevPals account</p>
-              <form onSubmit={this.onSubmit}>
+              {/* <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
                     type="text"
@@ -83,7 +181,10 @@ class Register extends Component {
                   />
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
-              </form>
+              </form> */}
+              {this.state.newUser === null
+                ? this.renderForm()
+                : this.renderConfirmationForm()}
             </div>
           </div>
         </div>

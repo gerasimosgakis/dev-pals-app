@@ -6,7 +6,7 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
   }
-  handleLogout = async event => {
+  onLogout = async event => {
     await Auth.signOut();
     // this.props.userHasAuthenticated(false);
     this.setState({ isAuthenticated: false });
@@ -50,7 +50,7 @@ class Navbar extends Component {
               </li> */}
               {this.props.isAuthenticated ? (
                 <li className="nav-item">
-                  <a className="nav-link" onClick={this.handleLogout}>
+                  <a className="nav-link" onClick={this.onLogout}>
                     Logout
                   </a>
                 </li>
