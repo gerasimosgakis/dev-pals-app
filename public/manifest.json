@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "DevPals",
+  "name": "DevPals - A Social Network for Developers",
   "icons": [
     {
       "src": "favicon.ico",
