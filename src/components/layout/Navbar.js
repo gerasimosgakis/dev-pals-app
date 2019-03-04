@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
 class Navbar extends Component {
@@ -8,8 +8,9 @@ class Navbar extends Component {
   }
   onLogout = async event => {
     await Auth.signOut();
-    // this.props.userHasAuthenticated(false);
-    this.setState({ isAuthenticated: false });
+    this.props.onAuthChange(false);
+    // this.setState({ isAuthenticated: false });
+    this.props.history.push("/login");
   };
   render() {
     return (
@@ -76,4 +77,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
