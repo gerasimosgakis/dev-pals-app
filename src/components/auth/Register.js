@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-// import Bootstrap from "react-bootstrap";
-// import ControlLabel from "react-bootstrap/ControlLabel";
-// import HelpBlock from "react-bootstrap/HelpBlock";
-// import FormGroup from "react-bootstrap/FormGroup";
-// import FormControl from "react-bootstrap/FormControl";
+import PropTypes from "prop-types";
+
 import {
   HelpBlock,
   FormGroup,
@@ -11,6 +8,8 @@ import {
   ControlLabel
 } from "react-bootstrap";
 import { Auth } from "aws-amplify";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
 
 class Register extends Component {
   constructor() {
@@ -48,27 +47,36 @@ class Register extends Component {
 
     this.setState({ isLoading: true });
 
-    try {
-      const newUser = await Auth.signUp({
-        username: this.state.email,
-        password: this.state.password
-      });
-      this.setState({
-        newUser
-      });
-    } catch (err) {
-      console.log(err);
-      if (err.code === "UsernameExistsException") {
-        await Auth.resendSignUp(this.state.email);
-        const newUser = {
-          username: this.state.email,
-          password: this.state.password
-        };
-        this.setState({
-          newUser
-        });
-      }
-    }
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword
+    };
+
+    this.props.registerUser(newUser);
+
+    // try {
+    //   const newUser = await Auth.signUp({
+    //     username: this.state.email,
+    //     password: this.state.password
+    //   });
+    //   this.setState({
+    //     newUser
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    //   if (err.code === "UsernameExistsException") {
+    //     await Auth.resendSignUp(this.state.email);
+    //     const newUser = {
+    //       username: this.state.email,
+    //       password: this.state.password
+    //     };
+    //     this.setState({
+    //       newUser
+    //     });
+    //   }
+    // }
 
     this.setState({ isLoading: false });
   };
@@ -160,8 +168,11 @@ class Register extends Component {
   }
 
   render() {
+    const { user } = this.props.auth;
+
     return (
       <div className="register">
+        {user ? user.email : null}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -225,4 +236,16 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(Register);
