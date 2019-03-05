@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import { Provider } from "react-redux";
+import store from "./store";
 
 import "./App.scss";
 import Routes from "./Routes";
@@ -42,18 +44,20 @@ class App extends Component {
     };
     return (
       !this.state.isAuthenticating && (
-        <div className="App">
-          <Navbar
-            isAuthenticated={this.state.isAuthenticated}
-            onAuthChange={this.userHasAuthenticated}
-          />
-          <div className="container">
-            {/* <Route exact path="/register" component={Register} />
+        <Provider store={store}>
+          <div className="App">
+            <Navbar
+              isAuthenticated={this.state.isAuthenticated}
+              onAuthChange={this.userHasAuthenticated}
+            />
+            <div className="container">
+              {/* <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} /> */}
-            <Routes childProps={childProps} />
+              <Routes childProps={childProps} />
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </Provider>
       )
     );
   }
