@@ -7,7 +7,7 @@ import {
   FormControl,
   ControlLabel
 } from "react-bootstrap";
-import { Auth } from "aws-amplify";
+
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 
@@ -36,6 +36,12 @@ class Register extends Component {
 
   validateConfirmationForm() {
     return this.state.confirmationCode.length > 0;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   onChange = e => {
@@ -86,16 +92,16 @@ class Register extends Component {
 
     this.setState({ isLoading: true });
 
-    try {
-      await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
-      await Auth.signIn(this.state.email, this.state.password);
+    // try {
+    //   await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
+    //   await Auth.signIn(this.state.email, this.state.password);
 
-      this.props.userHasAuthenticated(true);
-      this.props.history.push("/");
-    } catch (err) {
-      alert(err.message);
-      this.setState({ isLoading: false });
-    }
+    //   this.props.userHasAuthenticated(true);
+    //   this.props.history.push("/");
+    // } catch (err) {
+    //   alert(err.message);
+    //   this.setState({ isLoading: false });
+    // }
   };
 
   renderConfirmationForm() {
@@ -168,11 +174,11 @@ class Register extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
+    const { errors } = this.state;
 
     return (
       <div className="register">
-        {user ? user.email : null}
+        <p>{errors.code}</p>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -238,11 +244,13 @@ class Register extends Component {
 
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(
