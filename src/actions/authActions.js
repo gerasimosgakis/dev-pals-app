@@ -1,5 +1,5 @@
 import { Auth } from "aws-amplify";
-import { GET_ERRORS } from "./types";
+import { GET_ERRORS, GET_AUTHENTICATION } from "./types";
 
 // Register User
 export const registerUser = userData => async dispatch => {
@@ -30,12 +30,16 @@ export const registerUser = userData => async dispatch => {
       username: userData.email,
       password: userData.password
     });
+    dispatch({
+      type: GET_AUTHENTICATION,
+      payload: newUser
+    });
     console.log(newUser);
   } catch (err) {
     console.log("hi");
     dispatch({
       type: GET_ERRORS,
-      payload: err.message
+      payload: err
     });
   }
 };
