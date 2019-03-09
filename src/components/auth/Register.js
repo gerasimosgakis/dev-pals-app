@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 import {
   HelpBlock,
@@ -9,7 +10,7 @@ import {
 } from "react-bootstrap";
 
 import { connect } from "react-redux";
-import { registerUser } from "../../actions/authActions";
+import { registerUser, confirmUser } from "../../actions/authActions";
 
 class Register extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class Register extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-      newUser: null,
+      user: null,
       errors: {}
     };
   }
@@ -60,7 +61,7 @@ class Register extends Component {
       confirmPassword: this.state.confirmPassword
     };
 
-    this.props.registerUser(newUser);
+    this.props.registerUser(newUser, this.props.history);
 
     // try {
     //   const newUser = await Auth.signUp({
@@ -85,12 +86,20 @@ class Register extends Component {
     // }
 
     this.setState({ isLoading: false });
+    console.log(this.props.auth);
   };
 
   onConfirmationSubmit = async e => {
     e.preventDefault();
 
     this.setState({ isLoading: true });
+
+    const userConfirm = {
+      username: this.props.auth.user.username,
+      confirmationCode: this.state.confirmationCode
+    };
+
+    this.props.confirmUser(userConfirm, this.props.history);
 
     // try {
     //   await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
@@ -107,7 +116,7 @@ class Register extends Component {
   renderConfirmationForm() {
     return (
       <form onSubmit={this.onConfirmationSubmit}>
-        <FormGroup controlId="confirmationCode" beSize="large">
+        <FormGroup controlId="confirmationCode">
           <ControlLabel>Confirmation Code</ControlLabel>
           <FormControl
             autoFocus
@@ -230,9 +239,9 @@ class Register extends Component {
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form> */}
-              {this.state.newUser === null
-                ? this.renderForm()
-                : this.renderConfirmationForm()}
+              {this.props.auth.isAuthenticated && !this.props.auth.userConfirmed
+                ? this.renderConfirmationForm()
+                : this.renderForm()}
             </div>
           </div>
         </div>
@@ -243,6 +252,7 @@ class Register extends Component {
 
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
+  confirmUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -254,5 +264,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { registerUser }
-)(Register);
+  { registerUser, confirmUser }
+)(withRouter(Register));
