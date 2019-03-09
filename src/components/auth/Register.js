@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 import {
   HelpBlock,
@@ -7,9 +8,9 @@ import {
   FormControl,
   ControlLabel
 } from "react-bootstrap";
-import { Auth } from "aws-amplify";
+
 import { connect } from "react-redux";
-import { registerUser } from "../../actions/authActions";
+import { registerUser, confirmUser } from "../../actions/authActions";
 
 class Register extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class Register extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-      newUser: null,
+      user: null,
       errors: {}
     };
   }
@@ -36,6 +37,12 @@ class Register extends Component {
 
   validateConfirmationForm() {
     return this.state.confirmationCode.length > 0;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   onChange = e => {
@@ -54,7 +61,7 @@ class Register extends Component {
       confirmPassword: this.state.confirmPassword
     };
 
-    this.props.registerUser(newUser);
+    this.props.registerUser(newUser, this.props.history);
 
     // try {
     //   const newUser = await Auth.signUp({
@@ -79,6 +86,7 @@ class Register extends Component {
     // }
 
     this.setState({ isLoading: false });
+    console.log(this.props.auth);
   };
 
   onConfirmationSubmit = async e => {
@@ -86,22 +94,29 @@ class Register extends Component {
 
     this.setState({ isLoading: true });
 
-    try {
-      await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
-      await Auth.signIn(this.state.email, this.state.password);
+    const userConfirm = {
+      username: this.props.auth.user.username,
+      confirmationCode: this.state.confirmationCode
+    };
 
-      this.props.userHasAuthenticated(true);
-      this.props.history.push("/");
-    } catch (err) {
-      alert(err.message);
-      this.setState({ isLoading: false });
-    }
+    this.props.confirmUser(userConfirm, this.props.history);
+
+    // try {
+    //   await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
+    //   await Auth.signIn(this.state.email, this.state.password);
+
+    //   this.props.userHasAuthenticated(true);
+    //   this.props.history.push("/");
+    // } catch (err) {
+    //   alert(err.message);
+    //   this.setState({ isLoading: false });
+    // }
   };
 
   renderConfirmationForm() {
     return (
       <form onSubmit={this.onConfirmationSubmit}>
-        <FormGroup controlId="confirmationCode" beSize="large">
+        <FormGroup controlId="confirmationCode">
           <ControlLabel>Confirmation Code</ControlLabel>
           <FormControl
             autoFocus
@@ -168,11 +183,10 @@ class Register extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
+    const { errors } = this.state;
 
     return (
       <div className="register">
-        {user ? user.email : null}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -225,9 +239,9 @@ class Register extends Component {
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form> */}
-              {this.state.newUser === null
-                ? this.renderForm()
-                : this.renderConfirmationForm()}
+              {this.props.auth.isAuthenticated && !this.props.auth.userConfirmed
+                ? this.renderConfirmationForm()
+                : this.renderForm()}
             </div>
           </div>
         </div>
@@ -238,14 +252,17 @@ class Register extends Component {
 
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  confirmUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
-  { registerUser }
-)(Register);
+  { registerUser, confirmUser }
+)(withRouter(Register));
