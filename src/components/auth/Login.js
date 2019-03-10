@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class Login extends Component {
       isLoading: false,
       email: "",
       password: "",
-      errors: {}
+      errors: ""
     };
   }
 
@@ -21,6 +22,7 @@ class Login extends Component {
   };
 
   onSubmit = async e => {
+    console.log(this.props.errors);
     e.preventDefault();
     // try {
     //   await Auth.signIn(this.state.email, this.state.password);
@@ -61,6 +63,20 @@ class Login extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+                {/* <TextFieldGroup
+                  placeholder="Email Address"
+                  name="email"
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                />
+                <TextFieldGroup
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                /> */}
                 <div className="form-group">
                   <input
                     type="password"
