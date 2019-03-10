@@ -1,5 +1,5 @@
 import { Auth } from "aws-amplify";
-import { GET_ERRORS, SET_CURRENT_USER } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, RESET_USER } from "./types";
 
 // Register User
 export const registerUser = (userData, history) => async dispatch => {
@@ -76,6 +76,21 @@ export const loginUser = (userData, history) => async dispatch => {
     dispatch({
       type: SET_CURRENT_USER,
       payload: user
+    });
+    history.push("/profiles");
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
+export const logoutUser = history => async dispatch => {
+  try {
+    await Auth.signOut();
+    dispatch({
+      type: RESET_USER
     });
     history.push("/");
   } catch (err) {

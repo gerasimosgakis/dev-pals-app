@@ -1,16 +1,19 @@
 import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import PropTypes from "prop-types";
+import { logoutUser } from "../../actions/authActions";
+import { connect } from "react-redux";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
   }
-  onLogout = async event => {
-    await Auth.signOut();
-    this.props.onAuthChange(false);
+  onLogout = async e => {
+    // await Auth.signOut();
+    e.preventDefault();
+    this.props.logoutUser(this.props.history);
     // this.setState({ isAuthenticated: false });
-    this.props.history.push("/login");
   };
   render() {
     return (
@@ -77,4 +80,18 @@ class Navbar extends Component {
   }
 }
 
-export default withRouter(Navbar);
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(withRouter(Navbar));
