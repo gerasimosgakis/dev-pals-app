@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
+      isLoading: false,
       email: "",
       password: "",
       errors: {}
@@ -17,14 +22,22 @@ class Login extends Component {
 
   onSubmit = async e => {
     e.preventDefault();
-    try {
-      await Auth.signIn(this.state.email, this.state.password);
-      // alert("Logged in");
-      this.props.userHasAuthenticated(true);
-      this.props.history.push("/");
-    } catch (err) {
-      alert(err.message);
-    }
+    // try {
+    //   await Auth.signIn(this.state.email, this.state.password);
+    //   // alert("Logged in");
+    //   this.props.userHasAuthenticated(true);
+    //   this.props.history.push("/");
+    // } catch (err) {
+    //   alert(err.message);
+    // }
+    this.setState({ isLoading: true });
+
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.loginUser(user, this.props.history);
   };
 
   render() {
@@ -68,4 +81,18 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(withRouter(Login));

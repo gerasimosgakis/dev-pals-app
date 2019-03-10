@@ -69,6 +69,32 @@ export const confirmUser = (userData, history) => async dispatch => {
   }
 };
 
+export const loginUser = (userData, history) => async dispatch => {
+  console.log(userData);
+  try {
+    const user = await Auth.signIn(userData.email, userData.password);
+    dispatch({
+      type: SET_CURRENT_USER,
+      payload: user
+    });
+    history.push("/");
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
+// try {
+//   await Auth.signIn(this.state.email, this.state.password);
+//   // alert("Logged in");
+//   this.props.userHasAuthenticated(true);
+//   this.props.history.push("/");
+// } catch (err) {
+//   alert(err.message);
+// }
+
 // try {
 //   await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
 //   await Auth.signIn(this.state.email, this.state.password);
