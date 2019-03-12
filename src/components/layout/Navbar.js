@@ -46,16 +46,6 @@ class Navbar extends Component {
             </ul>
 
             <ul className="navbar-nav ml-auto">
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  Sign Up
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
-              </li> */}
               {this.props.auth.isAuthenticated ? (
                 <li className="nav-item">
                   <a className="nav-link" onClick={this.onLogout}>
