@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class Login extends Component {
       isLoading: false,
       email: "",
       password: "",
-      errors: {}
+      errors: ""
     };
   }
 
@@ -21,6 +22,7 @@ class Login extends Component {
   };
 
   onSubmit = async e => {
+    console.log(this.props.errors);
     e.preventDefault();
     // try {
     //   await Auth.signIn(this.state.email, this.state.password);
@@ -51,7 +53,7 @@ class Login extends Component {
                 Sign in to your DevConnector account
               </p>
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <input
                     type="email"
                     className="form-control form-control-lg"
@@ -60,8 +62,22 @@ class Login extends Component {
                     value={this.state.email}
                     onChange={this.onChange}
                   />
-                </div>
-                <div className="form-group">
+                </div> */}
+                <TextFieldGroup
+                  placeholder="Email Address"
+                  name="email"
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                />
+                <TextFieldGroup
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                />
+                {/* <div className="form-group">
                   <input
                     type="password"
                     className="form-control form-control-lg"
@@ -70,7 +86,7 @@ class Login extends Component {
                     value={this.state.password}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
@@ -84,6 +100,7 @@ class Login extends Component {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  password: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired
 };
 

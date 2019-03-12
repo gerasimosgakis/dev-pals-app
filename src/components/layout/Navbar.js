@@ -8,19 +8,23 @@ import { connect } from "react-redux";
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLoading: false,
+      isAuthenticated: false
+    };
   }
   onLogout = async e => {
     // await Auth.signOut();
     e.preventDefault();
     this.props.logoutUser(this.props.history);
-    // this.setState({ isAuthenticated: false });
+    this.setState({ isAuthenticated: false });
   };
   render() {
     return (
       <nav className="navbar navbar-expand-sm mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            DevPals {this.props.isAuthenticated}
+            DevPals
           </Link>
           <button
             className="navbar-toggler"
@@ -42,17 +46,7 @@ class Navbar extends Component {
             </ul>
 
             <ul className="navbar-nav ml-auto">
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  Sign Up
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
-              </li> */}
-              {this.props.isAuthenticated ? (
+              {this.props.auth.isAuthenticated ? (
                 <li className="nav-item">
                   <a className="nav-link" onClick={this.onLogout}>
                     Logout
