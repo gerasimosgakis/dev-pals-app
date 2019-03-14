@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import { getCurrentProfile } from "../../actions/profileActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
@@ -46,9 +45,6 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <button onClick={() => this.props.getCurrentProfile("USER-SUB-2234")}>
-          Test
-        </button>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -115,5 +111,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loginUser, getCurrentProfile }
+  { loginUser }
 )(withRouter(Login));
