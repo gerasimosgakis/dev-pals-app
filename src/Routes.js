@@ -4,6 +4,7 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import AppliedRoute from "./components/AppliedRoute";
+import Dashboard from "./components/dashboard/Dashboard";
 
 export default function Routes({ childProps }) {
   return (
@@ -16,6 +17,12 @@ export default function Routes({ childProps }) {
         props={childProps}
       />
       <AppliedRoute exact path="/login" component={Login} props={childProps} />
+      <AppliedRoute
+        exact
+        path="/dashboard"
+        component={Dashboard}
+        props={childProps}
+      />
     </Switch>
   );
 }

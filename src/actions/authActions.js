@@ -77,7 +77,7 @@ export const loginUser = (userData, history) => async dispatch => {
       type: SET_CURRENT_USER,
       payload: user
     });
-    history.push("/profiles");
+    history.push("/dashboard");
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

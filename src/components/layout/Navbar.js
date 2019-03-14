@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
+import { clearCurrentProfile } from "../../actions/profileActions";
 import { connect } from "react-redux";
 
 class Navbar extends Component {
@@ -16,6 +17,7 @@ class Navbar extends Component {
   onLogout = async e => {
     // await Auth.signOut();
     e.preventDefault();
+    this.props.clearCurrentProfile();
     this.props.logoutUser(this.props.history);
     this.setState({ isAuthenticated: false });
   };
@@ -87,5 +89,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, clearCurrentProfile }
 )(withRouter(Navbar));

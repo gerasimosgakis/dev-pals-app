@@ -53,7 +53,7 @@ class Login extends Component {
                 Sign in to your DevConnector account
               </p>
               <form onSubmit={this.onSubmit}>
-                {/* <div className="form-group">
+                <div className="form-group">
                   <input
                     type="email"
                     className="form-control form-control-lg"
@@ -62,8 +62,8 @@ class Login extends Component {
                     value={this.state.email}
                     onChange={this.onChange}
                   />
-                </div> */}
-                <TextFieldGroup
+                </div>
+                {/* <TextFieldGroup
                   placeholder="Email Address"
                   name="email"
                   type="email"
@@ -76,8 +76,8 @@ class Login extends Component {
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                />
-                {/* <div className="form-group">
+                /> */}
+                <div className="form-group">
                   <input
                     type="password"
                     className="form-control form-control-lg"
@@ -86,7 +86,7 @@ class Login extends Component {
                     value={this.state.password}
                     onChange={this.onChange}
                   />
-                </div> */}
+                </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
