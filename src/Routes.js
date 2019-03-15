@@ -5,6 +5,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import AppliedRoute from "./components/AppliedRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/common/PrivateRoute";
 
 export default function Routes({ childProps }) {
   return (
@@ -17,12 +18,13 @@ export default function Routes({ childProps }) {
         props={childProps}
       />
       <AppliedRoute exact path="/login" component={Login} props={childProps} />
-      <AppliedRoute
+      {/* <AppliedRoute
         exact
         path="/dashboard"
         component={Dashboard}
         props={childProps}
-      />
+      /> */}
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
     </Switch>
   );
 }
