@@ -2,7 +2,9 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
-  GET_ERRORS
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  RESET_USER
 } from "./types";
 import { API } from "aws-amplify";
 
@@ -43,6 +45,29 @@ export const createProfile = (user, profileData, history) => async dispatch => {
       type: GET_ERRORS,
       payload: err
     });
+  }
+};
+
+// Delete account & profile
+export const deleteAccount = (user, profileId) => async dispatch => {
+  console.log(user, profileId);
+  if (window.confirm("Are you sure? This cannot be undone")) {
+    try {
+      await API.del("devpals", `/profiles/${profileId}`, {
+        headers: {
+          // set custom header id for testing
+          "cognito-identity-id": user
+        }
+      });
+      dispatch({
+        type: RESET_USER
+      });
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err
+      });
+    }
   }
 };
 

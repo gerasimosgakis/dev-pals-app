@@ -72,7 +72,10 @@ export const confirmUser = (userData, history) => async dispatch => {
 export const loginUser = (userData, history) => async dispatch => {
   console.log(userData);
   try {
-    const user = await Auth.signIn(userData.email, userData.password);
+    await Auth.signIn(userData.email, userData.password);
+    const user = await Auth.currentAuthenticatedUser({
+      bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+    });
     dispatch({
       type: SET_CURRENT_USER,
       payload: user
