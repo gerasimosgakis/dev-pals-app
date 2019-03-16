@@ -7,6 +7,7 @@ import AppliedRoute from "./components/AppliedRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/common/PrivateRoute";
 import CreateProfile from "./components/create-profile/CreateProfile";
+import EditProfile from "./components/edit-profile/EditProfile";
 
 export default function Routes({ childProps }) {
   return (
@@ -27,6 +28,7 @@ export default function Routes({ childProps }) {
       /> */}
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+      <PrivateRoute exact path="/edit-profile" component={EditProfile} />
     </Switch>
   );
 }
