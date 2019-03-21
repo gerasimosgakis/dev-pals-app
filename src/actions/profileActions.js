@@ -48,6 +48,26 @@ export const createProfile = (user, profileData, history) => async dispatch => {
   }
 };
 
+// Add Experience
+export const addExperience = (user, expData, history) => async dispatch => {
+  try {
+    await API.post("devpals", "/experiences", {
+      body: expData,
+      headers: {
+        // set custom header id for testing
+        "cognito-identity-id": user
+      }
+    });
+    history.push("/dashboard");
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
 // Delete account & profile
 export const deleteAccount = (user, profileId) => async dispatch => {
   console.log(user, profileId);
