@@ -31,7 +31,7 @@ export const getCurrentProfile = id => async dispatch => {
 export const createProfile = (user, profileData, history) => async dispatch => {
   console.log(profileData);
   try {
-    await API.post("devpals", "/profiles", {
+    await API.post("devpals", `/profiles`, {
       body: profileData,
       headers: {
         // set custom header id for testing
@@ -51,7 +51,7 @@ export const createProfile = (user, profileData, history) => async dispatch => {
 // Add Experience
 export const addExperience = (user, expData, history) => async dispatch => {
   try {
-    await API.post("devpals", "/experiences", {
+    await API.put("devpals", `/experiences/${user}`, {
       body: expData,
       headers: {
         // set custom header id for testing

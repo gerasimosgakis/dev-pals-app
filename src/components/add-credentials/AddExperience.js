@@ -4,7 +4,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addExperience } from "../../actions/profileActions";
+import { addExperience, createProfile } from "../../actions/profileActions";
 
 class AddExperience extends Component {
   constructor(props) {
@@ -45,13 +45,17 @@ class AddExperience extends Component {
     e.preventDefault();
 
     const expData = {
-      company: this.state.company,
-      title: this.state.title,
-      location: this.state.location,
-      from: this.state.from,
-      to: this.state.to,
-      current: this.state.current,
-      description: this.state.description
+      expData: {
+        company: this.state.company,
+        title: this.state.title,
+        location: this.state.location,
+        from: this.state.from,
+        to: this.state.current
+          ? new Date().toJSON().slice(0, 10)
+          : this.state.to || null,
+        current: this.state.current,
+        description: this.state.description
+      }
     };
 
     const currentUserId = this.props.auth.user.username;
@@ -160,5 +164,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addExperience }
+  { addExperience, createProfile }
 )(withRouter(AddExperience));
