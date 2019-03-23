@@ -50,9 +50,7 @@ class AddExperience extends Component {
         title: this.state.title,
         location: this.state.location,
         from: this.state.from,
-        to: this.state.current
-          ? new Date().toJSON().slice(0, 10)
-          : this.state.to || null,
+        to: this.state.to || null,
         current: this.state.current,
         description: this.state.description
       }

@@ -68,6 +68,46 @@ export const addExperience = (user, expData, history) => async dispatch => {
   }
 };
 
+// Add Education
+export const addEducation = (user, eduData, history) => async dispatch => {
+  try {
+    await API.put("devpals", `/educations/${user}`, {
+      body: eduData,
+      headers: {
+        // set custom header id for testing
+        "cognito-identity-id": user
+      }
+    });
+    history.push("/dashboard");
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
+// Delete Experience
+export const deleteExperience = (id, user, history) => async dispatch => {
+  try {
+    await API.put("devpals", `/delete-experiences/${id}`, {
+      body: { id },
+      headers: {
+        // set custom header id for testing
+        "cognito-identity-id": user
+      }
+    });
+    history.push("/dashboard");
+  } catch (err) {
+    console.log(err);
+    // dispatch({
+    //   type: GET_ERRORS,
+    //   payload: err
+    // });
+  }
+};
+
 // Delete account & profile
 export const deleteAccount = (user, profileId) => async dispatch => {
   console.log(user, profileId);
