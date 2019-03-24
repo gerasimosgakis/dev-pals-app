@@ -122,6 +122,40 @@ export const deleteExperience = (user, index) => async dispatch => {
   }
 };
 
+// Delete Education
+export const deleteEducation = (user, index) => async dispatch => {
+  try {
+    await API.put("devpals", `/delete-education/${user}`, {
+      body: { index },
+      headers: {
+        // set custom header id for testing
+        "cognito-identity-id": user
+      }
+    });
+    dispatch(setProfileLoading());
+
+    try {
+      const profiles = await API.get("devpals", `/profiles/${user}`);
+      dispatch({
+        type: GET_PROFILE,
+        payload: profiles.length > 0 ? { ...profiles } : {}
+      });
+      console.log(profiles);
+    } catch (err) {
+      dispatch({
+        type: GET_PROFILE,
+        payload: {}
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
 // Delete account & profile
 export const deleteAccount = (user, profileId) => async dispatch => {
   console.log(user, profileId);
