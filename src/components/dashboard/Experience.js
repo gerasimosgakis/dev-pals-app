@@ -7,7 +7,13 @@ import { deleteExperience } from "../../actions/profileActions";
 
 class Experience extends Component {
   onDeleteClick(id) {
-    this.deleteExperience(id, this.props.user, this.props.history);
+    const expToDelete = this.props.experience.find(exp => {
+      return exp._id === id;
+    });
+    console.log(expToDelete);
+    const index = this.props.experience.indexOf(expToDelete);
+    console.log(index);
+    this.props.deleteExperience(this.props.user, index);
   }
 
   render() {
@@ -56,4 +62,7 @@ Experience.propTypes = {
   deleteExperience: PropTypes.func.isRequired
 };
 
-export default connect(deleteExperience)(withRouter(Experience));
+export default connect(
+  null,
+  { deleteExperience }
+)(withRouter(Experience));

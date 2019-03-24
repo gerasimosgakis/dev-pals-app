@@ -13,7 +13,8 @@ const middleware = [thunk];
 let store;
 
 // check if browser is chrome so the app won't break
-if (window.navigator.userAgent.includes("chrome")) {
+console.log(window.navigator.userAgent);
+if (window.navigator.userAgent.includes("Chrome")) {
   store = createStore(
     rootReducer,
     initialState,

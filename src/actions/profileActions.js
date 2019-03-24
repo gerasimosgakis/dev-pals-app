@@ -89,22 +89,36 @@ export const addEducation = (user, eduData, history) => async dispatch => {
 };
 
 // Delete Experience
-export const deleteExperience = (id, user, history) => async dispatch => {
+export const deleteExperience = (user, index) => async dispatch => {
   try {
-    await API.put("devpals", `/delete-experiences/${id}`, {
-      body: { id },
+    await API.put("devpals", `/delete-experience/${user}`, {
+      body: { index },
       headers: {
         // set custom header id for testing
         "cognito-identity-id": user
       }
     });
-    history.push("/dashboard");
+    dispatch(setProfileLoading());
+
+    try {
+      const profiles = await API.get("devpals", `/profiles/${user}`);
+      dispatch({
+        type: GET_PROFILE,
+        payload: profiles.length > 0 ? { ...profiles } : {}
+      });
+      console.log(profiles);
+    } catch (err) {
+      dispatch({
+        type: GET_PROFILE,
+        payload: {}
+      });
+    }
   } catch (err) {
     console.log(err);
-    // dispatch({
-    //   type: GET_ERRORS,
-    //   payload: err
-    // });
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
   }
 };
 
