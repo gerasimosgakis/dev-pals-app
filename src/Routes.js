@@ -9,6 +9,7 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddExperience from "./components/add-credentials/AddExperience";
+import AddEducation from "./components/add-credentials/AddEducation";
 
 export default function Routes({ childProps }) {
   return (
@@ -31,6 +32,7 @@ export default function Routes({ childProps }) {
       <PrivateRoute exact path="/create-profile" component={CreateProfile} />
       <PrivateRoute exact path="/edit-profile" component={EditProfile} />
       <PrivateRoute exact path="/add-experience" component={AddExperience} />
+      <PrivateRoute exact path="/add-education" component={AddEducation} />
     </Switch>
   );
 }
