@@ -1,5 +1,6 @@
 import {
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
@@ -135,12 +136,12 @@ export const deleteEducation = (user, index) => async dispatch => {
     dispatch(setProfileLoading());
 
     try {
-      const profiles = await API.get("devpals", `/profiles/${user}`);
+      const profile = await API.get("devpals", `/profiles/${user}`);
       dispatch({
         type: GET_PROFILE,
-        payload: profiles.length > 0 ? { ...profiles } : {}
+        payload: profile.length > 0 ? { ...profile } : {}
       });
-      console.log(profiles);
+      console.log(profile);
     } catch (err) {
       dispatch({
         type: GET_PROFILE,
@@ -152,6 +153,25 @@ export const deleteEducation = (user, index) => async dispatch => {
     dispatch({
       type: GET_ERRORS,
       payload: err
+    });
+  }
+};
+
+// Get All Profiles
+export const getProfiles = () => async dispatch => {
+  dispatch(setProfileLoading());
+
+  try {
+    const profiles = await API.get("devpals", `/profiles`);
+    dispatch({
+      type: GET_PROFILES,
+      payload: profiles
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GET_PROFILES,
+      payload: null
     });
   }
 };

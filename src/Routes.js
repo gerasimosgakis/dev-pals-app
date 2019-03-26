@@ -10,6 +10,7 @@ import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
+import Profiles from "./components/profiles/Profiles";
 
 export default function Routes({ childProps }) {
   return (
@@ -22,6 +23,12 @@ export default function Routes({ childProps }) {
         props={childProps}
       />
       <AppliedRoute exact path="/login" component={Login} props={childProps} />
+      <AppliedRoute
+        exact
+        path="/profiles"
+        component={Profiles}
+        props={childProps}
+      />
       {/* <AppliedRoute
         exact
         path="/dashboard"
