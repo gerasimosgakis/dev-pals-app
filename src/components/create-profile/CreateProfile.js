@@ -56,8 +56,14 @@ class CreateProfile extends Component {
     };
 
     const currentUserId = this.props.auth.user.username;
+    const email = this.props.auth.user.attributes.email;
 
-    this.props.createProfile(currentUserId, profileData, this.props.history);
+    this.props.createProfile(
+      currentUserId,
+      email,
+      profileData,
+      this.props.history
+    );
   };
 
   onChange = e => {

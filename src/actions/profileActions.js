@@ -8,6 +8,7 @@ import {
   RESET_USER
 } from "./types";
 import { API } from "aws-amplify";
+import gravatar from "gravatar";
 
 // Get current profile
 export const getCurrentProfile = id => async dispatch => {
@@ -29,9 +30,22 @@ export const getCurrentProfile = id => async dispatch => {
 };
 
 // Create Profile
-export const createProfile = (user, profileData, history) => async dispatch => {
+export const createProfile = (
+  user,
+  email,
+  profileData,
+  history
+) => async dispatch => {
   console.log(profileData);
-  profileData.skills = profileData.skills.split(",");
+  profileData.skills = profileData.skills ? profileData.skills.split(",") : [];
+  const avatar = gravatar.url(email, {
+    s: "100", // size
+    r: "pg", // rating
+    d: "mm" //default
+  });
+  console.log(avatar);
+  profileData.avatar = avatar;
+  console.log(profileData);
   try {
     await API.post("devpals", `/profiles`, {
       body: profileData,
