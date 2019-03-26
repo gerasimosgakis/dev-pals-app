@@ -31,6 +31,7 @@ export const getCurrentProfile = id => async dispatch => {
 // Create Profile
 export const createProfile = (user, profileData, history) => async dispatch => {
   console.log(profileData);
+  profileData.skills = profileData.skills.split(",");
   try {
     await API.post("devpals", `/profiles`, {
       body: profileData,
