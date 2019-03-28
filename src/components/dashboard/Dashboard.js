@@ -36,7 +36,7 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted">
               Welcome{" "}
-              <Link to={`/profile/${profile[0].handle}`}>
+              <Link to={`/profiles-by-handle/${profile[0].handle}`}>
                 {profile[0].handle}
               </Link>
             </p>

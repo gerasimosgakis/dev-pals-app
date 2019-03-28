@@ -29,6 +29,27 @@ export const getCurrentProfile = id => async dispatch => {
   }
 };
 
+// Get profile by handle
+export const getProfileByHandle = handle => async dispatch => {
+  dispatch(setProfileLoading());
+
+  try {
+    const profiles = await API.get("devpals", `/profiles-by-handle/${handle}`);
+    console.log(profiles);
+    dispatch({
+      type: GET_PROFILE,
+      payload: profiles.length > 0 ? { ...profiles } : {}
+    });
+    console.log(profiles);
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GET_PROFILE,
+      payload: {}
+    });
+  }
+};
+
 // Create Profile
 export const createProfile = (
   user,
