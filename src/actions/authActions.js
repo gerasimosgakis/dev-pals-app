@@ -28,7 +28,10 @@ export const registerUser = (userData, history) => async dispatch => {
     console.log(userData);
     const newUser = await Auth.signUp({
       username: userData.email,
-      password: userData.password
+      password: userData.password,
+      attributes: {
+        name: userData.name
+      }
     });
     dispatch({
       type: SET_CURRENT_USER,
@@ -41,7 +44,10 @@ export const registerUser = (userData, history) => async dispatch => {
       await Auth.resendSignUp(userData.email);
       const newUser = {
         username: userData.email,
-        password: userData.password
+        password: userData.password,
+        attributes: {
+          name: userData.name
+        }
       };
       dispatch({
         type: SET_CURRENT_USER,
@@ -59,7 +65,7 @@ export const registerUser = (userData, history) => async dispatch => {
 export const confirmUser = (userData, history) => async dispatch => {
   console.log(userData);
   try {
-    await Auth.confirmSignUp(userData.username, userData.confirmationCode);
+    await Auth.confirmSignUp(userData.email, userData.confirmationCode);
     history.push("/login");
   } catch (err) {
     dispatch({

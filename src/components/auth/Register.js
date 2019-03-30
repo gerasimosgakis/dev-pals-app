@@ -95,7 +95,7 @@ class Register extends Component {
     this.setState({ isLoading: true });
 
     const userConfirm = {
-      username: this.props.auth.user.username,
+      email: this.props.auth.user.user.username,
       confirmationCode: this.state.confirmationCode
     };
 
@@ -143,6 +143,15 @@ class Register extends Component {
   renderForm() {
     return (
       <form onSubmit={this.onSubmit}>
+        <FormGroup controlId="name">
+          <ControlLabel>Name</ControlLabel>
+          <FormControl
+            autoFocus
+            type="text"
+            value={this.state.name}
+            onChange={this.onChange}
+          />
+        </FormGroup>
         <FormGroup controlId="email">
           <ControlLabel>Email</ControlLabel>
           <FormControl
