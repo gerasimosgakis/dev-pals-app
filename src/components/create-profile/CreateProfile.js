@@ -41,6 +41,7 @@ class CreateProfile extends Component {
 
     const profileData = {
       handle: this.state.handle,
+      name: this.props.auth.user.attributes.name,
       company: this.state.company,
       website: this.state.website,
       location: this.state.location,
