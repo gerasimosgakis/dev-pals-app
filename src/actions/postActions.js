@@ -1,5 +1,11 @@
 import { API } from "aws-amplify";
-import { ADD_POST, GET_POSTS, GET_ERRORS, POST_LOADING } from "./types";
+import {
+  ADD_POST,
+  GET_POSTS,
+  GET_ERRORS,
+  POST_LOADING,
+  DELETE_POST
+} from "./types";
 import gravatar from "gravatar";
 
 // Add Post
@@ -47,6 +53,24 @@ export const getPosts = () => async dispatch => {
       type: GET_POSTS,
       payload: null
     });
+  }
+};
+
+// Delete Post
+export const deletePost = id => async dispatch => {
+  if (window.confirm("Are you sure? This cannot be undone")) {
+    try {
+      await API.del("devpals", `/posts/${id}`);
+      dispatch({
+        type: DELETE_POST,
+        payload: id
+      });
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err
+      });
+    }
   }
 };
 
