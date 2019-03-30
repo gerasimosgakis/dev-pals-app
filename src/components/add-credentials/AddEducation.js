@@ -10,13 +10,13 @@ class AddEducation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      school: null,
-      degree: null,
-      fieldofstudy: null,
-      from: null,
-      to: null,
+      school: "",
+      degree: "",
+      fieldofstudy: "",
+      from: "",
+      to: "",
       current: false,
-      description: null,
+      description: "",
       errors: {},
       disabled: false
     };
@@ -62,8 +62,6 @@ class AddEducation extends Component {
   };
 
   render() {
-    const { errors } = this.state;
-
     return (
       <div className="add-education">
         <div className="container">

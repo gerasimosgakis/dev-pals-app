@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -8,7 +7,6 @@ import "./App.scss";
 import Routes from "./Routes";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import Landing from "./components/layout/Landing";
 
 class App extends Component {
   constructor(props) {

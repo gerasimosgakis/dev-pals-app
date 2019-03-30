@@ -12,6 +12,7 @@ import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
+import NotFound from "./components/not-found/NotFound";
 
 export default function Routes({ childProps }) {
   return (
@@ -34,6 +35,12 @@ export default function Routes({ childProps }) {
         exact
         path="/profiles-by-handle/:handle"
         component={Profile}
+        props={childProps}
+      />
+      <AppliedRoute
+        exact
+        path="/not-found"
+        component={NotFound}
         props={childProps}
       />
       {/* <AppliedRoute

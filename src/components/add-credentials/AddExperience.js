@@ -10,13 +10,13 @@ class AddExperience extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: null,
-      title: null,
-      location: null,
-      from: null,
-      to: null,
+      company: "",
+      title: "",
+      location: "",
+      from: "",
+      to: "",
       current: false,
-      description: null,
+      description: "",
       errors: {},
       disabled: false
     };
@@ -62,8 +62,6 @@ class AddExperience extends Component {
   };
 
   render() {
-    const { errors } = this.state;
-
     return (
       <div className="add-experience">
         <div className="container">

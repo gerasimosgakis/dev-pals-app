@@ -14,20 +14,20 @@ class CreateProfile extends Component {
     super(props);
     this.state = {
       displaySocialInputs: false,
-      handle: null,
-      company: null,
-      website: null,
-      location: null,
-      status: null,
-      skills: null,
-      githubusername: null,
+      handle: "",
+      company: "",
+      website: "",
+      location: "",
+      status: "",
+      skills: "",
+      githubusername: "",
       social: {},
-      bio: null,
-      twitter: null,
-      facebook: null,
-      linkedin: null,
-      youtube: null,
-      instagram: null,
+      bio: "",
+      twitter: "",
+      facebook: "",
+      linkedin: "",
+      youtube: "",
+      instagram: "",
       errors: {}
     };
   }
@@ -50,21 +50,19 @@ class CreateProfile extends Component {
       //const skillsCSV = profile.skills.join(",");
 
       // if profile doesn't exist make empty string
-      profile.company = !isEmpty(profile.company) ? profile.company : null;
-      profile.website = !isEmpty(profile.website) ? profile.website : null;
-      profile.location = !isEmpty(profile.location) ? profile.location : null;
+      profile.company = !isEmpty(profile.company) ? profile.company : "";
+      profile.website = !isEmpty(profile.website) ? profile.website : "";
+      profile.location = !isEmpty(profile.location) ? profile.location : "";
       profile.githubusername = !isEmpty(profile.githubusername)
         ? profile.githubusername
-        : null;
-      profile.bio = !isEmpty(profile.bio) ? profile.bio : null;
+        : "";
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
       profile.social = !isEmpty(profile.social) ? profile.social : {};
-      profile.twitter = !isEmpty(profile.twitter) ? profile.twitter : null;
-      profile.youtube = !isEmpty(profile.youtube) ? profile.youtube : null;
-      profile.instagram = !isEmpty(profile.instagram)
-        ? profile.instagram
-        : null;
-      profile.facebook = !isEmpty(profile.facebook) ? profile.facebook : null;
-      profile.linkedin = !isEmpty(profile.linkedin) ? profile.linkedin : null;
+      profile.twitter = !isEmpty(profile.twitter) ? profile.twitter : "";
+      profile.youtube = !isEmpty(profile.youtube) ? profile.youtube : "";
+      profile.instagram = !isEmpty(profile.instagram) ? profile.instagram : "";
+      profile.facebook = !isEmpty(profile.facebook) ? profile.facebook : "";
+      profile.linkedin = !isEmpty(profile.linkedin) ? profile.linkedin : "";
 
       // Set component fields state
       this.setState({

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Auth } from "aws-amplify";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   constructor() {
@@ -100,7 +98,6 @@ class Login extends Component {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  password: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired
 };
 

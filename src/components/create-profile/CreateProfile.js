@@ -13,19 +13,19 @@ class CreateProfile extends Component {
     super(props);
     this.state = {
       displaySocialInputs: false,
-      handle: null,
-      company: null,
-      website: null,
-      location: null,
-      status: null,
-      skills: null,
-      githubusername: null,
-      bio: null,
-      twitter: null,
-      facebook: null,
-      linkedin: null,
-      youtube: null,
-      instagram: null,
+      handle: "",
+      company: "",
+      website: "",
+      location: "",
+      status: "",
+      skills: "",
+      githubusername: "",
+      bio: "",
+      twitter: "",
+      facebook: "",
+      linkedin: "",
+      youtube: "",
+      instagram: "",
       errors: {}
     };
   }

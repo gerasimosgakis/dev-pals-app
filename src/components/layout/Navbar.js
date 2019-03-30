@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Auth } from "aws-amplify";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
@@ -50,7 +49,12 @@ class Navbar extends Component {
             <ul className="navbar-nav ml-auto">
               {this.props.auth.isAuthenticated ? (
                 <li className="nav-item">
-                  <a className="nav-link" onClick={this.onLogout}>
+                  <a
+                    href="_target"
+                    rel="noopener noreferrer"
+                    className="nav-link"
+                    onClick={this.onLogout}
+                  >
                     Logout
                   </a>
                 </li>
