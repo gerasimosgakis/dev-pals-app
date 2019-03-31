@@ -2,6 +2,7 @@ import { API } from "aws-amplify";
 import {
   ADD_POST,
   GET_POSTS,
+  GET_POST,
   GET_ERRORS,
   POST_LOADING,
   DELETE_POST
@@ -71,6 +72,25 @@ export const deletePost = id => async dispatch => {
         payload: err
       });
     }
+  }
+};
+
+// Get Post
+export const getPost = id => async dispatch => {
+  console.log("Post", id);
+  dispatch(setPostLoading());
+  try {
+    const posts = await API.get("devpals", `/posts/${id}`);
+    dispatch({
+      type: GET_POST,
+      payload: posts
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GET_POST,
+      payload: null
+    });
   }
 };
 
