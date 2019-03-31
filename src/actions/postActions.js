@@ -130,6 +130,34 @@ export const removeLike = (id, user) => async dispatch => {
   }
 };
 
+// Add Comment
+export const addComment = (
+  postId,
+  email,
+  commentData,
+  history
+) => async dispatch => {
+  const avatar = gravatar.url(email, {
+    s: "100", // size
+    r: "pg", // rating
+    d: "mm" //default
+  });
+  commentData.avatar = avatar;
+  console.log(postId);
+  try {
+    const post = await API.put("devpals", `/posts/comment/${postId}`, {
+      body: commentData
+    });
+    dispatch(getPost(postId));
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
 // Set loading state
 export const setPostLoading = () => {
   return {
