@@ -133,6 +133,7 @@ export const removeLike = (id, user) => async dispatch => {
 // Add Comment
 export const addComment = (
   postId,
+  user,
   email,
   commentData,
   history
@@ -146,7 +147,27 @@ export const addComment = (
   console.log(postId);
   try {
     const post = await API.put("devpals", `/posts/comment/${postId}`, {
+      headers: {
+        // set custom header id for testing
+        "cognito-identity-id": user
+      },
       body: commentData
+    });
+    dispatch(getPost(postId));
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
+// Delete Comment
+export const deleteComment = (postId, index, history) => async dispatch => {
+  try {
+    await API.put("devpals", `/posts/comment/delete/${postId}`, {
+      body: { index }
     });
     dispatch(getPost(postId));
   } catch (err) {

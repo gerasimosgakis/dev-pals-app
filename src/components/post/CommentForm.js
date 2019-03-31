@@ -22,7 +22,7 @@ class CommentForm extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    // const currentUserId = this.props.auth.user.username;
+    const currentUserId = this.props.auth.user.username;
     const { postId } = this.props;
     const email = this.props.auth.user.attributes.email;
 
@@ -31,7 +31,13 @@ class CommentForm extends Component {
       name: this.props.auth.user.attributes.name
     };
 
-    this.props.addComment(postId, email, commentData, this.props.history);
+    this.props.addComment(
+      postId,
+      currentUserId,
+      email,
+      commentData,
+      this.props.history
+    );
     this.setState({ text: "" });
   };
 
