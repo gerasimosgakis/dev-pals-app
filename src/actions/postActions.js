@@ -74,6 +74,42 @@ export const deletePost = id => async dispatch => {
   }
 };
 
+// Add Like
+export const addLike = (id, user) => async dispatch => {
+  try {
+    await API.put("devpals", `/posts/like/${id}`, {
+      body: {
+        // set custom header id for testing
+        userId: user
+      }
+    });
+    dispatch(getPosts());
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
+// Remove Like
+export const removeLike = (id, user) => async dispatch => {
+  try {
+    await API.put("devpals", `/posts/unlike/${id}`, {
+      body: {
+        // set custom header id for testing
+        userId: user
+      }
+    });
+    dispatch(getPosts());
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    });
+  }
+};
+
 // Set loading state
 export const setPostLoading = () => {
   return {
