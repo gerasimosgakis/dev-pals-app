@@ -20,11 +20,11 @@ export const addPost = (user, email, postData, history) => async dispatch => {
 
   try {
     const post = await API.post("devpals", `/posts`, {
-      body: postData,
-      headers: {
-        // set custom header id for testing
-        "cognito-identity-id": user
-      }
+      body: postData
+      // headers: {
+      //   // set custom header id for testing
+      //   "cognito-identity-id": user
+      // }
     });
     dispatch({
       type: ADD_POST,

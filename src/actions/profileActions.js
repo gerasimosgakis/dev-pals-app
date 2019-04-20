@@ -68,11 +68,11 @@ export const createProfile = (
   console.log(profileData);
   try {
     await API.post("devpals", `/profiles`, {
-      body: profileData,
-      headers: {
-        // set custom header id for testing
-        "cognito-identity-id": user
-      }
+      body: profileData
+      // headers: {
+      //   // set custom header id for testing
+      //   "cognito-identity-id": user
+      // }
     });
     history.push("/dashboard");
   } catch (err) {
