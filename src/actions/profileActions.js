@@ -14,7 +14,7 @@ export const getCurrentProfile = id => async dispatch => {
   dispatch(setProfileLoading());
 
   try {
-    const profiles = await API.get("devpals", `/profiles/${id}`);
+    const profiles = await API.get("april-devpals-app-api", `/profiles/${id}`);
     dispatch({
       type: GET_PROFILE,
       payload: profiles.length > 0 ? { ...profiles } : {}
@@ -33,7 +33,10 @@ export const getProfileByHandle = handle => async dispatch => {
   dispatch(setProfileLoading());
 
   try {
-    const profiles = await API.get("devpals", `/profiles-by-handle/${handle}`);
+    const profiles = await API.get(
+      "april-devpals-app-api",
+      `/profiles-by-handle/${handle}`
+    );
     console.log(profiles);
     dispatch({
       type: GET_PROFILE,
@@ -67,7 +70,7 @@ export const createProfile = (
   profileData.avatar = avatar;
   console.log(profileData);
   try {
-    await API.post("devpals", `/profiles`, {
+    await API.post("april-devpals-app-api", `/profiles`, {
       body: profileData
       // headers: {
       //   // set custom header id for testing
@@ -87,7 +90,7 @@ export const createProfile = (
 // Add Experience
 export const addExperience = (user, expData, history) => async dispatch => {
   try {
-    await API.put("devpals", `/experiences/${user}`, {
+    await API.put("april-devpals-app-api", `/experiences/${user}`, {
       body: expData,
       headers: {
         // set custom header id for testing
@@ -107,7 +110,7 @@ export const addExperience = (user, expData, history) => async dispatch => {
 // Add Education
 export const addEducation = (user, eduData, history) => async dispatch => {
   try {
-    await API.put("devpals", `/educations/${user}`, {
+    await API.put("april-devpals-app-api", `/educations/${user}`, {
       body: eduData,
       headers: {
         // set custom header id for testing
@@ -127,7 +130,7 @@ export const addEducation = (user, eduData, history) => async dispatch => {
 // Delete Experience
 export const deleteExperience = (user, index) => async dispatch => {
   try {
-    await API.put("devpals", `/delete-experience/${user}`, {
+    await API.put("april-devpals-app-api", `/delete-experience/${user}`, {
       body: { index },
       headers: {
         // set custom header id for testing
@@ -137,7 +140,10 @@ export const deleteExperience = (user, index) => async dispatch => {
     dispatch(setProfileLoading());
 
     try {
-      const profiles = await API.get("devpals", `/profiles/${user}`);
+      const profiles = await API.get(
+        "april-devpals-app-api",
+        `/profiles/${user}`
+      );
       dispatch({
         type: GET_PROFILE,
         payload: profiles.length > 0 ? { ...profiles } : {}
@@ -161,7 +167,7 @@ export const deleteExperience = (user, index) => async dispatch => {
 // Delete Education
 export const deleteEducation = (user, index) => async dispatch => {
   try {
-    await API.put("devpals", `/delete-education/${user}`, {
+    await API.put("april-devpals-app-api", `/delete-education/${user}`, {
       body: { index },
       headers: {
         // set custom header id for testing
@@ -171,7 +177,10 @@ export const deleteEducation = (user, index) => async dispatch => {
     dispatch(setProfileLoading());
 
     try {
-      const profile = await API.get("devpals", `/profiles/${user}`);
+      const profile = await API.get(
+        "april-devpals-app-api",
+        `/profiles/${user}`
+      );
       dispatch({
         type: GET_PROFILE,
         payload: profile.length > 0 ? { ...profile } : {}
@@ -197,7 +206,7 @@ export const getProfiles = () => async dispatch => {
   dispatch(setProfileLoading());
 
   try {
-    const profiles = await API.get("devpals", `/profiles`);
+    const profiles = await API.get("april-devpals-app-api", `/profiles`);
     dispatch({
       type: GET_PROFILES,
       payload: profiles
@@ -216,7 +225,7 @@ export const deleteAccount = (user, profileId) => async dispatch => {
   console.log(user, profileId);
   if (window.confirm("Are you sure? This cannot be undone")) {
     try {
-      await API.del("devpals", `/profiles/${profileId}`, {
+      await API.del("april-devpals-app-api", `/profiles/${profileId}`, {
         headers: {
           // set custom header id for testing
           "cognito-identity-id": user

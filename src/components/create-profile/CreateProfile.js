@@ -40,6 +40,7 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     const profileData = {
+      userId: this.props.auth.user.username,
       handle: this.state.handle,
       name: this.props.auth.user.attributes.name,
       company: this.state.company,
