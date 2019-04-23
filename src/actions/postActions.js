@@ -19,7 +19,7 @@ export const addPost = (user, email, postData, history) => async dispatch => {
   postData.avatar = avatar;
 
   try {
-    const post = await API.post("devpals", `/posts`, {
+    const post = await API.post("april-devpals-app-api", `/posts`, {
       body: postData
       // headers: {
       //   // set custom header id for testing
@@ -43,7 +43,7 @@ export const addPost = (user, email, postData, history) => async dispatch => {
 export const getPosts = () => async dispatch => {
   dispatch(setPostLoading());
   try {
-    const posts = await API.get("devpals", `/posts`);
+    const posts = await API.get("april-devpals-app-api", `/posts`);
     dispatch({
       type: GET_POSTS,
       payload: posts
@@ -61,7 +61,7 @@ export const getPosts = () => async dispatch => {
 export const deletePost = id => async dispatch => {
   if (window.confirm("Are you sure? This cannot be undone")) {
     try {
-      await API.del("devpals", `/posts/${id}`);
+      await API.del("april-devpals-app-api", `/posts/${id}`);
       dispatch({
         type: DELETE_POST,
         payload: id
@@ -80,7 +80,7 @@ export const getPost = id => async dispatch => {
   console.log("Post", id);
   dispatch(setPostLoading());
   try {
-    const posts = await API.get("devpals", `/posts/${id}`);
+    const posts = await API.get("april-devpals-app-api", `/posts/${id}`);
     dispatch({
       type: GET_POST,
       payload: posts
@@ -97,7 +97,7 @@ export const getPost = id => async dispatch => {
 // Add Like
 export const addLike = (id, user) => async dispatch => {
   try {
-    await API.put("devpals", `/posts/like/${id}`, {
+    await API.put("april-devpals-app-api", `/posts/like/${id}`, {
       body: {
         // set custom header id for testing
         userId: user
@@ -115,7 +115,7 @@ export const addLike = (id, user) => async dispatch => {
 // Remove Like
 export const removeLike = (id, user) => async dispatch => {
   try {
-    await API.put("devpals", `/posts/unlike/${id}`, {
+    await API.put("april-devpals-app-api", `/posts/unlike/${id}`, {
       body: {
         // set custom header id for testing
         userId: user
@@ -146,13 +146,17 @@ export const addComment = (
   commentData.avatar = avatar;
   console.log(postId);
   try {
-    const post = await API.put("devpals", `/posts/comment/${postId}`, {
-      headers: {
-        // set custom header id for testing
-        "cognito-identity-id": user
-      },
-      body: commentData
-    });
+    const post = await API.put(
+      "april-devpals-app-api",
+      `/posts/comment/${postId}`,
+      {
+        // headers: {
+        //   // set custom header id for testing
+        //   "cognito-identity-id": user
+        // },
+        body: commentData
+      }
+    );
     dispatch(getPost(postId));
   } catch (err) {
     console.log(err);
@@ -166,7 +170,7 @@ export const addComment = (
 // Delete Comment
 export const deleteComment = (postId, index, history) => async dispatch => {
   try {
-    await API.put("devpals", `/posts/comment/delete/${postId}`, {
+    await API.put("april-devpals-app-api", `/posts/comment/delete/${postId}`, {
       body: { index }
     });
     dispatch(getPost(postId));
