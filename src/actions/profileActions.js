@@ -91,11 +91,11 @@ export const createProfile = (
 export const addExperience = (user, expData, history) => async dispatch => {
   try {
     await API.put("april-devpals-app-api", `/experiences/${user}`, {
-      body: expData,
-      headers: {
-        // set custom header id for testing
-        "cognito-identity-id": user
-      }
+      body: expData
+      // headers: {
+      //   // set custom header id for testing
+      //   "cognito-identity-id": user
+      // }
     });
     history.push("/dashboard");
   } catch (err) {
@@ -111,11 +111,11 @@ export const addExperience = (user, expData, history) => async dispatch => {
 export const addEducation = (user, eduData, history) => async dispatch => {
   try {
     await API.put("april-devpals-app-api", `/educations/${user}`, {
-      body: eduData,
-      headers: {
-        // set custom header id for testing
-        "cognito-identity-id": user
-      }
+      body: eduData
+      // headers: {
+      //   // set custom header id for testing
+      //   "cognito-identity-id": user
+      // }
     });
     history.push("/dashboard");
   } catch (err) {
@@ -131,11 +131,11 @@ export const addEducation = (user, eduData, history) => async dispatch => {
 export const deleteExperience = (user, index) => async dispatch => {
   try {
     await API.put("april-devpals-app-api", `/delete-experience/${user}`, {
-      body: { index },
-      headers: {
-        // set custom header id for testing
-        "cognito-identity-id": user
-      }
+      body: { index }
+      // headers: {
+      //   // set custom header id for testing
+      //   "cognito-identity-id": user
+      // }
     });
     dispatch(setProfileLoading());
 
@@ -168,11 +168,11 @@ export const deleteExperience = (user, index) => async dispatch => {
 export const deleteEducation = (user, index) => async dispatch => {
   try {
     await API.put("april-devpals-app-api", `/delete-education/${user}`, {
-      body: { index },
-      headers: {
-        // set custom header id for testing
-        "cognito-identity-id": user
-      }
+      body: { index }
+      // headers: {
+      //   // set custom header id for testing
+      //   "cognito-identity-id": user
+      // }
     });
     dispatch(setProfileLoading());
 
