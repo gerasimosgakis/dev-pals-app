@@ -26,6 +26,7 @@ class PostForm extends Component {
     const email = this.props.auth.user.attributes.email;
 
     const postData = {
+      userId: currentUserId,
       text: this.state.text,
       name: this.props.auth.user.attributes.name
     };
