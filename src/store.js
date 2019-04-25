@@ -10,7 +10,10 @@ let store;
 
 // check if browser is chrome so the app won't break
 console.log(window.navigator.userAgent);
-if (window.navigator.userAgent.includes("Chrome")) {
+if (
+  window.navigator.userAgent.includes("Chrome") &&
+  window.__REDUX_DEVTOOLS_EXTENSION__
+) {
   store = createStore(
     rootReducer,
     initialState,
