@@ -225,11 +225,11 @@ export const deleteAccount = (user, profileId) => async dispatch => {
   console.log(user, profileId);
   if (window.confirm("Are you sure? This cannot be undone")) {
     try {
-      await API.del("april-devpals-app-api", `/profiles/${profileId}`, {
-        headers: {
-          // set custom header id for testing
-          "cognito-identity-id": user
-        }
+      await API.del("april-devpals-app-api", `/profiles/${user}`, {
+        // headers: {
+        //   // set custom header id for testing
+        //   "cognito-identity-id": user
+        // }
       });
       dispatch({
         type: RESET_USER
