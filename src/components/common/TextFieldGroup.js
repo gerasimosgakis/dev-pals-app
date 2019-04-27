@@ -9,6 +9,7 @@ const TextFieldGroup = ({
   info,
   type,
   onChange,
+  required,
   disabled
 }) => {
   return (
@@ -21,6 +22,7 @@ const TextFieldGroup = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
+        required={required}
       />
       {info && <small className="form-text text-muted">{info}</small>}
     </div>
