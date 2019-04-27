@@ -66,19 +66,19 @@ class CreateProfile extends Component {
 
       // Set component fields state
       this.setState({
-        handle: profile.handle,
-        company: profile.company,
-        website: profile.website,
-        location: profile.location,
-        status: profile.status,
-        skills: profile.skills,
-        githubusername: profile.githubusername,
-        bio: profile.bio,
-        twitter: profile.twitter,
-        facebook: profile.facebook,
-        linkedin: profile.linkedin,
-        youtube: profile.youtube,
-        instagram: profile.instagram
+        handle: profile.handle ? profile.handle : "",
+        company: profile.company ? profile.company : "",
+        website: profile.website ? profile.website : "",
+        location: profile.location ? profile.location : "",
+        status: profile.status ? profile.status : "",
+        skills: profile.skills ? profile.skills : [],
+        githubusername: profile.githubusername ? profile.githubusername : "",
+        bio: profile.bio ? profile.bio : "",
+        twitter: profile.twitter ? profile.twitter : "",
+        facebook: profile.facebook ? profile.facebook : "",
+        linkedin: profile.linkedin ? profile.linkedin : "",
+        youtube: profile.youtube ? profile.youtube : "",
+        instagram: profile.instagram ? profile.instagram : ""
       });
     }
   }
@@ -87,6 +87,7 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     const profileData = {
+      userId: this.props.auth.user.username,
       handle: this.state.handle,
       company: this.state.company,
       website: this.state.website,
@@ -102,9 +103,17 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
 
-    const currentUserId = this.props.auth.user.username;
+    console.log(profileData);
 
-    this.props.createProfile(currentUserId, profileData, this.props.history);
+    const currentUserId = this.props.auth.user.username;
+    const email = this.props.auth.user.attributes.email;
+
+    this.props.createProfile(
+      currentUserId,
+      email,
+      profileData,
+      this.props.history
+    );
   };
 
   onChange = e => {

@@ -121,7 +121,7 @@ class CreateProfile extends Component {
 
     // Select options for status
     const options = [
-      { label: "* Select Professional Status", value: 0 },
+      { label: "Select Professional Status", value: 0 },
       { label: "Developer", value: "Developer" },
       { label: "Junior Developer", value: "Junior Developer" },
       { label: "Senior Developer", value: "Senior Developer" },
@@ -147,6 +147,7 @@ class CreateProfile extends Component {
                   placeholder="* Profile Handle"
                   name="handle"
                   value={this.state.handle}
+                  required
                   onChange={this.onChange}
                   info="A unique handle for your profile URL. Your full name, company name. nickname"
                 />

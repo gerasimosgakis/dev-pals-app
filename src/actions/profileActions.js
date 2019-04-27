@@ -59,8 +59,15 @@ export const createProfile = (
   profileData,
   history
 ) => async dispatch => {
-  console.log(profileData);
-  profileData.skills = profileData.skills ? profileData.skills.split(",") : [];
+  console.log(typeof profileData.skills, profileData);
+  //profileData.skills = profileData.skills ? profileData.skills.split(",") : [];
+  if (profileData.skills && typeof profileData.skills === "string") {
+    profileData.skills = profileData.skills.split(",");
+  } else if (profileData.skills && typeof profileData.skills === "object") {
+    profileData.skills = profileData.skills;
+  } else {
+    profileData.skills = [];
+  }
   const avatar = gravatar.url(email, {
     s: "100", // size
     r: "pg", // rating
