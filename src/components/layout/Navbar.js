@@ -55,6 +55,12 @@ class Navbar extends Component {
                       Post Feed
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/chat">
+                      {" "}
+                      Chat
+                    </Link>
+                  </li>
                 </Fragment>
               ) : (
                 <li className="nav-item">
