@@ -1,3 +1,7 @@
-img {
-  width: 150px;
+.profile-item {
+  &__image-container {
+    &-image {
+      width: 150px;
+    }
+  }
 }
