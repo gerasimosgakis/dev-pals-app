@@ -36,6 +36,12 @@ class Landing extends Component {
           <p className="landing__slogan-text lead-text">
             Meet other developers, code together, get better
           </p>
+          <Link to="/register" className="btn btn-lg btn-info mr-2">
+            Sign Up
+          </Link>
+          <Link to="/login" className="btn btn-lg btn-light">
+            Login
+          </Link>
         </div>
       </div>
     );
