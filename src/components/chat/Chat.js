@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ChatMessage from "./ChatMessage";
-import Signup from "./Signup";
 import ChatApp from "./ChatApp";
 
 import { default as Chatkit } from "../../../node_modules/@pusher/chatkit-server";
@@ -63,11 +61,12 @@ class Chat extends Component {
 
   render() {
     let view = "";
-    if (this.state.currentView === "ChatMessage") {
-      view = <ChatMessage changeView={this.changeView} />;
-    } else if (this.state.currentView === "signup") {
-      view = <Signup onSubmit={this.createUser} />;
-    } else if (this.state.currentView === "chatApp") {
+    // if (this.state.currentView === "ChatMessage") {
+    //   view = <ChatMessage changeView={this.changeView} />;
+    // } else if (this.state.currentView === "signup") {
+    //   view = <Signup onSubmit={this.createUser} />;
+    // } else
+    if (this.state.currentView === "chatApp") {
       view = <ChatApp currentId={this.state.currentId} />;
     }
 
