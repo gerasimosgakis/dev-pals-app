@@ -22,7 +22,7 @@ class Navbar extends Component {
   };
   render() {
     return (
-      <nav className="navbar navbar-expand-sm mb-4">
+      <nav className="navbar navbar-expand-sm navbar-light  mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
             DevPals
@@ -32,6 +32,9 @@ class Navbar extends Component {
             type="button"
             data-toggle="collapse"
             data-target="#mobile-nav"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
           </button>
