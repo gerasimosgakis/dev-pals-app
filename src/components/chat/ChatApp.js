@@ -68,8 +68,8 @@ class ChatApp extends Component {
   }
   render() {
     return (
-      <div>
-        <h2 className="header">Hi There, Ask us anything</h2>
+      <div className="chat-container__inner">
+        <h2 className="header">General chat room</h2>
         <MessageList messages={this.state.messages} />
         <Input className="input-field" onSubmit={this.addMessage} />
       </div>
