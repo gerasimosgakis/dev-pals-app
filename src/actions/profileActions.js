@@ -69,7 +69,7 @@ export const createProfile = (
     profileData.skills = [];
   }
   const avatar = gravatar.url(email, {
-    s: "100", // size
+    s: "300", // size
     r: "pg", // rating
     d: "mm" //default
   });
