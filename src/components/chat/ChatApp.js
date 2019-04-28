@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { ChatManager, TokenProvider } from "@pusher/chatkit-client";
 import MessageList from "./MessageList";
 import Input from "./Input";
@@ -13,6 +14,7 @@ class ChatApp extends Component {
       users: []
     };
     this.addMessage = this.addMessage.bind(this);
+    let currentUser;
   }
 
   componentDidMount() {
@@ -28,6 +30,7 @@ class ChatApp extends Component {
       .connect()
       .then(currentUser => {
         console.log(currentUser);
+        this.currentUser = currentUser;
         this.setState({ currentUser: currentUser });
         return currentUser.subscribeToRoom({
           roomId: "19398095",
@@ -51,6 +54,10 @@ class ChatApp extends Component {
       .catch(error => console.log(error));
   }
 
+  componentWillUnmount() {
+    this.currentUser.roomSubscriptions["19398095"].cancel();
+  }
+
   addMessage(text) {
     this.state.currentUser
       .sendMessage({
@@ -69,4 +76,10 @@ class ChatApp extends Component {
     );
   }
 }
-export default ChatApp;
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps)(ChatApp);
