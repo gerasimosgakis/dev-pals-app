@@ -70,7 +70,7 @@ class Chat extends Component {
       view = <ChatApp currentId={this.state.currentId} />;
     }
 
-    return <div>{view}</div>;
+    return <div className="chat-container">{view}</div>;
   }
 }
 
