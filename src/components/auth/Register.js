@@ -115,6 +115,7 @@ class Register extends Component {
   };
 
   renderConfirmationForm() {
+    const { errors } = this.props.errors;
     return (
       <form onSubmit={this.onConfirmationSubmit}>
         <TextFieldGroup
@@ -123,6 +124,8 @@ class Register extends Component {
           type="text"
           value={this.state.confirmationCode}
           onChange={this.onChange}
+          required
+          error={errors.message}
         />
         {/* <LoaderButton
           block
@@ -139,6 +142,7 @@ class Register extends Component {
   }
 
   renderForm() {
+    const { errors } = this.props.errors;
     return (
       <form onSubmit={this.onSubmit}>
         <TextFieldGroup
@@ -147,6 +151,7 @@ class Register extends Component {
           type="text"
           value={this.state.name}
           onChange={this.onChange}
+          required
         />
         <TextFieldGroup
           placeholder="Email Address"
@@ -154,6 +159,7 @@ class Register extends Component {
           type="email"
           value={this.state.email}
           onChange={this.onChange}
+          required
         />
         <TextFieldGroup
           placeholder="Password"
@@ -161,6 +167,7 @@ class Register extends Component {
           type="password"
           value={this.state.password}
           onChange={this.onChange}
+          required
         />
         <TextFieldGroup
           placeholder="Confirm Password"
@@ -168,6 +175,8 @@ class Register extends Component {
           type="password"
           value={this.state.confirmPassword}
           onChange={this.onChange}
+          required
+          error={errors.message}
         />
         {/* <LoaderButton
           block

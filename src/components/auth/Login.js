@@ -12,7 +12,7 @@ class Login extends Component {
       isLoading: false,
       email: "",
       password: "",
-      errors: ""
+      errors: {}
     };
   }
 
@@ -21,7 +21,7 @@ class Login extends Component {
   };
 
   onSubmit = async e => {
-    console.log(this.props.errors);
+    console.log(this.props.errors.errors);
     e.preventDefault();
     // try {
     //   await Auth.signIn(this.state.email, this.state.password);
@@ -42,6 +42,7 @@ class Login extends Component {
   };
 
   render() {
+    const { errors } = this.props.errors;
     return (
       <div className="login">
         <div className="container">
@@ -58,6 +59,7 @@ class Login extends Component {
                   type="email"
                   value={this.state.email}
                   onChange={this.onChange}
+                  required
                 />
                 <TextFieldGroup
                   placeholder="Password"
@@ -65,6 +67,8 @@ class Login extends Component {
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
+                  required
+                  error={errors.message}
                 />
                 {/* <div className="form-group">
                   <input
