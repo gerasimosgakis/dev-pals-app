@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
+import { clearErrors } from "../../actions/errorActions";
 
 import {
   HelpBlock,
@@ -26,6 +27,10 @@ class Register extends Component {
       user: null,
       errors: {}
     };
+  }
+
+  componentWillMount() {
+    this.props.clearErrors();
   }
 
   validateForm() {
@@ -214,6 +219,7 @@ class Register extends Component {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   confirmUser: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -225,5 +231,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { registerUser, confirmUser }
+  { registerUser, confirmUser, clearErrors }
 )(withRouter(Register));
