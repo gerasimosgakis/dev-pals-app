@@ -1,5 +1,9 @@
 import { Auth } from "aws-amplify";
-import { GET_ERRORS, SET_CURRENT_USER, RESET_USER } from "./types";
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  RESET_USER
+} from "./types";
 
 // Register User
 export const registerUser = (userData, history) => async dispatch => {
@@ -24,8 +28,14 @@ export const registerUser = (userData, history) => async dispatch => {
   //     });
   //   }
   // }
+  if (userData.password !== userData.confirmPassword) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: { message: `Passwords don't match` }
+    });
+    return;
+  }
   try {
-    console.log(userData);
     const newUser = await Auth.signUp({
       username: userData.email,
       password: userData.password,
@@ -38,7 +48,6 @@ export const registerUser = (userData, history) => async dispatch => {
       payload: newUser
     });
     //history.push("/login");
-    console.log(newUser);
   } catch (err) {
     if (err.code === "UsernameExistsException") {
       await Auth.resendSignUp(userData.email);
