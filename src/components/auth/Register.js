@@ -101,7 +101,7 @@ class Register extends Component {
     this.setState({ isLoading: true });
 
     const userConfirm = {
-      email: this.props.auth.user.user.username,
+      email: this.props.auth.user.username,
       confirmationCode: this.state.confirmationCode
     };
 
