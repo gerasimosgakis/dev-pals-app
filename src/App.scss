@@ -1,12 +1,18 @@
 @import "styles/Landing";
 @import "styles/fonts";
 @import "styles/colors";
+@import "styles/buttons";
 @import "styles/spacing";
 @import "styles/ProfileItem";
-@import 'styles/Chat';
+@import "styles/Chat";
+@import "styles/Login";
 
 $color_1: #bbb;
 $background_color_1: rgba(0, 0, 0, 0.7);
+
+body {
+  font: $font;
+}
 
 a {
   text-decoration: none;
