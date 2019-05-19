@@ -11,13 +11,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload
+        user: action.payload,
+        errors: { message: "" }
       };
     case RESET_USER:
       return {
         ...state,
         isAuthenticated: false,
-        user: {}
+        user: {},
+        errors: { message: "" }
       };
     default:
       return state;
