@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import { clearErrors } from "../../actions/errorActions";
 
 import {
   HelpBlock,
@@ -27,10 +26,6 @@ class Register extends Component {
       user: null,
       errors: {}
     };
-  }
-
-  componentWillMount() {
-    this.props.clearErrors();
   }
 
   validateForm() {
@@ -92,7 +87,6 @@ class Register extends Component {
     // }
 
     this.setState({ isLoading: false });
-    console.log(this.props.auth);
   };
 
   onConfirmationSubmit = async e => {
@@ -101,7 +95,7 @@ class Register extends Component {
     this.setState({ isLoading: true });
 
     const userConfirm = {
-      email: this.props.auth.user.username,
+      email: this.props.auth.user.user.username,
       confirmationCode: this.state.confirmationCode
     };
 
@@ -120,7 +114,6 @@ class Register extends Component {
   };
 
   renderConfirmationForm() {
-    const { errors } = this.props.errors;
     return (
       <form onSubmit={this.onConfirmationSubmit}>
         <TextFieldGroup
@@ -129,8 +122,6 @@ class Register extends Component {
           type="text"
           value={this.state.confirmationCode}
           onChange={this.onChange}
-          required
-          error={errors.message}
         />
         {/* <LoaderButton
           block
@@ -141,13 +132,13 @@ class Register extends Component {
           text="Verify"
           loadingText="Verifying..."
         /> */}
-        <input type="submit" className="btn btn-info btn-block mt-4" />
+        {/* <input type="submit" className="btn btn-info btn-block mt-4" /> */}
+        <button className="register__form-buttons submit-btn">Submit</button>
       </form>
     );
   }
 
   renderForm() {
-    const { errors } = this.props.errors;
     return (
       <form onSubmit={this.onSubmit}>
         <TextFieldGroup
@@ -156,7 +147,6 @@ class Register extends Component {
           type="text"
           value={this.state.name}
           onChange={this.onChange}
-          required
         />
         <TextFieldGroup
           placeholder="Email Address"
@@ -164,7 +154,6 @@ class Register extends Component {
           type="email"
           value={this.state.email}
           onChange={this.onChange}
-          required
         />
         <TextFieldGroup
           placeholder="Password"
@@ -172,7 +161,6 @@ class Register extends Component {
           type="password"
           value={this.state.password}
           onChange={this.onChange}
-          required
         />
         <TextFieldGroup
           placeholder="Confirm Password"
@@ -180,8 +168,6 @@ class Register extends Component {
           type="password"
           value={this.state.confirmPassword}
           onChange={this.onChange}
-          required
-          error={errors.message}
         />
         {/* <LoaderButton
           block
@@ -192,23 +178,35 @@ class Register extends Component {
           text="Signup"
           loadingText="Signing up…"
         /> */}
-        <input type="submit" className="btn btn-info btn-block mt-4" />
+        {/* <input type="submit" className="btn btn-info btn-block mt-4" /> */}
+        <button className="register__form-buttons submit-btn">Sign Up</button>
       </form>
     );
   }
 
   render() {
     return (
+      // <div className="register">
+      //   <div className="container">
+      //     <div className="row">
+      //       <div className="col-md-8 m-auto">
+      //         <h1 className="display-4 text-center">Sign Up</h1>
+      //         <p className="lead text-center">Create your DevPals account</p>
+      //         {this.props.auth.isAuthenticated && !this.props.auth.userConfirmed
+      //           ? this.renderConfirmationForm()
+      //           : this.renderForm()}
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
       <div className="register">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your DevPals account</p>
-              {this.props.auth.isAuthenticated && !this.props.auth.userConfirmed
-                ? this.renderConfirmationForm()
-                : this.renderForm()}
-            </div>
+        <div className="register__header">
+          <h1>Sign Up</h1>
+          <p className="header-label">Create your DevPals account</p>
+          <div className="register__form">
+            {this.props.auth.isAuthenticated && !this.props.auth.userConfirmed
+              ? this.renderConfirmationForm()
+              : this.renderForm()}
           </div>
         </div>
       </div>
@@ -219,7 +217,6 @@ class Register extends Component {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   confirmUser: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -231,5 +228,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { registerUser, confirmUser, clearErrors }
+  { registerUser, confirmUser }
 )(withRouter(Register));
