@@ -105,7 +105,9 @@ class Login extends Component {
               required
               error={errors.message}
             />
-            <button className="login__form-buttons submit-btn">Log In</button>
+            <button className="login__form-buttons button submit-btn">
+              Log In
+            </button>
           </form>
         </div>
       </div>

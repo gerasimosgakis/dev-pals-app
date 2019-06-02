@@ -179,7 +179,9 @@ class Register extends Component {
           loadingText="Signing up…"
         /> */}
         {/* <input type="submit" className="btn btn-info btn-block mt-4" /> */}
-        <button className="register__form-buttons submit-btn">Sign Up</button>
+        <button className="register__form-buttons button submit-btn">
+          Sign Up
+        </button>
       </form>
     );
   }
