@@ -49,56 +49,66 @@ class Login extends Component {
   render() {
     const { errors } = this.props.errors;
     return (
+      // <div className="login">
+      //   <div className="container">
+      //     <div className="row">
+      //       <div className="col-md-8 m-auto">
+      //         <h1 className="display-4 text-center">Log In</h1>
+      //         <p className="lead text-center">
+      //           Sign in to your DevPals account
+      //         </p>
+      //         <form onSubmit={this.onSubmit}>
+      //           <TextFieldGroup
+      //             placeholder="Email Address"
+      //             name="email"
+      //             type="email"
+      //             value={this.state.email}
+      //             onChange={this.onChange}
+      //             required
+      //           />
+      //           <TextFieldGroup
+      //             placeholder="Password"
+      //             name="password"
+      //             type="password"
+      //             value={this.state.password}
+      //             onChange={this.onChange}
+      //             required
+      //             error={errors.message}
+      //           />
+      //           <input type="submit" className="btn btn-info btn-block mt-4" />
+      //         </form>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
       <div className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">
-                Sign in to your DevPals account
-              </p>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  required
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  required
-                  error={errors.message}
-                />
-                {/* <div className="form-group">
-                  <input
-                    type="email"
-                    className="form-control form-control-lg"
-                    placeholder="Email Address"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className="form-control form-control-lg"
-                    placeholder="Password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                  />
-                </div> */}
-                <input type="submit" className="btn btn-info btn-block mt-4" />
-              </form>
-            </div>
-          </div>
+        <div className="login__header">
+          <h1>Log In</h1>
+          <p className="header-label">Sign in to your DevPals account</p>
+        </div>
+        <div className="login__form">
+          <form onSubmit={this.onSubmit}>
+            <TextFieldGroup
+              placeholder="Email Address"
+              name="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              required
+            />
+            <TextFieldGroup
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              required
+              error={errors.message}
+            />
+            <button className="login__form-buttons button submit-btn">
+              Log In
+            </button>
+          </form>
         </div>
       </div>
     );

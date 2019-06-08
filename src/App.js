@@ -27,43 +27,8 @@ class App extends Component {
     this.state = {
       isAuthenticated: false,
       isAuthenticating: true
-      // currentUsername: "",
-      // currentId: "",
-      // currentView: "ChatMessage"
     };
   }
-
-  // createUser = username => {
-  //   chatkit
-  //     .createUser({
-  //       id: username,
-  //       name: username
-  //     })
-  //     .then(currentUser => {
-  //       this.setState({
-  //         currentUsername: username,
-  //         currentId: username,
-  //         currentView: "chatApp"
-  //       });
-  //     })
-  //     .catch(err => {
-  //       if (err.status === 400) {
-  //         this.setState({
-  //           currentUsername: username,
-  //           currentId: username,
-  //           currentView: "chatApp"
-  //         });
-  //       } else {
-  //         console.log(err.status);
-  //       }
-  //     });
-  // };
-
-  // changeView = view => {
-  //   this.setState({
-  //     currentView: view
-  //   });
-  // };
 
   async componentDidMount() {
     try {
