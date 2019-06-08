@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Auth } from "aws-amplify";
+import { Auth, AmazonCognitoIdentity } from "aws-amplify";
 import { Provider } from "react-redux";
 import store from "./store";
+import config from "./config";
 
 import "./App.scss";
 import Routes from "./Routes";
