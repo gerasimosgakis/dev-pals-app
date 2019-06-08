@@ -3,6 +3,7 @@
 @import "styles/colors";
 @import "styles/buttons";
 @import "styles/spacing";
+@import "styles/layout";
 @import "styles/ProfileItem";
 @import "styles/Chat";
 @import "styles/Login";
@@ -15,6 +16,7 @@ $background_color_1: rgba(0, 0, 0, 0.7);
 
 body {
   font: $font;
+  line-height: 1;
 }
 
 a {
