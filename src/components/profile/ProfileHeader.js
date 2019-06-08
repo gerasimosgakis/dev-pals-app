@@ -92,6 +92,7 @@ class ProfileHeader extends Component {
               )}
             </p>
           </div>
+          <hr />
         </div>
       </div>
       // <div className="row">

@@ -17,26 +17,35 @@ class ProfileAbout extends Component {
     ));
 
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card card-body bg-light mb-3">
-            <h3 className="text-center text-info">{firstName}'s Bio</h3>
-            <p className="lead">
-              {isEmpty(profile[0].bio) ? (
-                <span>{firstName} does not have a bio</span>
-              ) : (
-                <span>{profile[0].bio}</span>
-              )}
-            </p>
-            <hr />
-            <h3 className="text-center text-info">Skill Set</h3>
-            <div className="row">
-              <div className="d-flex flex-wrap justify-content-center align-items-center">
-                {skills}
-              </div>
-            </div>
-          </div>
-        </div>
+      // <div className="row">
+      //   <div className="col-md-12">
+      //     <div className="card card-body bg-light mb-3">
+      //       <h3 className="text-center text-info">{firstName}'s Bio</h3>
+      // <p className="lead">
+      //   {isEmpty(profile[0].bio) ? (
+      //     <span>{firstName} does not have a bio</span>
+      //   ) : (
+      //     <span>{profile[0].bio}</span>
+      //   )}
+      // </p>
+      // <hr />
+      //       <h3 className="text-center text-info">Skill Set</h3>
+      //       <div className="row">
+      //         <div className="d-flex flex-wrap justify-content-center align-items-center">
+      //           {skills}
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
+      <div className="profile-about contain">
+        <p className="lead">
+          {isEmpty(profile[0].bio) ? (
+            <span>{firstName} does not have a bio</span>
+          ) : (
+            <p>{profile[0].bio}</p>
+          )}
+        </p>
       </div>
     );
   }
