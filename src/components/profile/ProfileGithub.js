@@ -19,9 +19,6 @@ class ProfileGithub extends Component {
   componentDidMount() {
     const { username } = this.props;
     const { count, sort, clientId, clientSecret } = this.state;
-    console.log(
-      `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
-    );
     fetch(
       `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
     )
