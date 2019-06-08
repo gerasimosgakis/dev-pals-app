@@ -37,7 +37,8 @@ class Dashboard extends Component {
             <p className="lead text-muted">
               Welcome{" "}
               <Link to={`/profiles-by-handle/${profile[0].handle}`}>
-                {profile[0].handle}
+                {profile[0].handle[0].toUpperCase() +
+                  profile[0].handle.substr(1)}
               </Link>
             </p>
             <ProfileActions />

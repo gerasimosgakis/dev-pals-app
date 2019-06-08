@@ -46,12 +46,6 @@ export default function Routes({ childProps }) {
         component={NotFound}
         props={childProps}
       />
-      {/* <AppliedRoute
-        exact
-        path="/dashboard"
-        component={Dashboard}
-        props={childProps}
-      /> */}
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/create-profile" component={CreateProfile} />
       <PrivateRoute exact path="/edit-profile" component={EditProfile} />

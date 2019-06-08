@@ -90,18 +90,6 @@ class ProfileHeader extends Component {
                     <i className="fab fa-youtube fa-2x" />
                   </a>
                 )}
-                {/* <a className="text-white p-2" href="#">
-                  <i className="fab fa-twitter fa-2x" />
-                </a>
-                <a className="text-white p-2" href="#">
-                  <i className="fab fa-facebook fa-2x" />
-                </a>
-                <a className="text-white p-2" href="#">
-                  <i className="fab fa-linkedin fa-2x" />
-                </a>
-                <a className="text-white p-2" href="#">
-                  <i className="fab fa-instagram fa-2x" />
-                </a> */}
               </p>
             </div>
           </div>

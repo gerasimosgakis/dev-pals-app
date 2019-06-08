@@ -32,13 +32,10 @@ class Profile extends Component {
     } else {
       profileContent = (
         <div>
-          <div className="row">
-            <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
+          {/* <Link to="/profiles" className="btn btn-light mb-3 float-left">
                 Back To Profiles
-              </Link>
-            </div>
-          </div>
+              </Link> */}
+
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
           <ProfileCreds
@@ -52,15 +49,7 @@ class Profile extends Component {
       );
     }
 
-    return (
-      <div className="profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">{profileContent}</div>
-          </div>
-        </div>
-      </div>
-    );
+    return <div>{profileContent}</div>;
   }
 }
 

@@ -21,3 +21,10 @@ h1 {
   font-size: 1.2rem;
   font-weight: 200;
 }
+
+.no-decoration {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
