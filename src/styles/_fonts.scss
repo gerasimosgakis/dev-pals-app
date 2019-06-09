@@ -2,7 +2,11 @@
 
 .lead-text {
   font-size: 1.5em;
-  color: $lead;
+  color: $font;
+}
+
+.help-text {
+  color: $help;
 }
 
 .error-text {
@@ -16,8 +20,27 @@ h1 {
   color: $font;
 }
 
+h2 {
+  font-weight: 400;
+  font-size: 2rem;
+  color: $font;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: $font;
+}
+
 .header-label {
   text-align: center;
   font-size: 1.2rem;
   font-weight: 200;
+}
+
+.no-decoration {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }

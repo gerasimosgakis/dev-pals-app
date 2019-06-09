@@ -28,6 +28,8 @@ class CreateProfile extends Component {
       linkedin: "",
       youtube: "",
       instagram: "",
+      expData: this.props.profile.profile[0].expData, // retrieve data from redux so they will not be overwritten with empty
+      eduData: this.props.profile.profile[0].eduData,
       errors: {}
     };
   }
@@ -101,10 +103,10 @@ class CreateProfile extends Component {
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
-      instagram: this.state.instagram
+      instagram: this.state.instagram,
+      expData: this.state.expData,
+      eduData: this.state.eduData
     };
-
-    console.log(profileData);
 
     const currentUserId = this.props.auth.user.username;
     const email = this.props.auth.user.attributes.email;

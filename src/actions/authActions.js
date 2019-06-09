@@ -1,5 +1,6 @@
 import { Auth } from "aws-amplify";
 import { GET_ERRORS, SET_CURRENT_USER, RESET_USER } from "./types";
+import gravatar from "gravatar";
 
 // Register User
 export const registerUser = (userData, history) => async dispatch => {
@@ -86,6 +87,12 @@ export const loginUser = (userData, history) => async dispatch => {
     const user = await Auth.currentAuthenticatedUser({
       bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
     });
+    const avatar = gravatar.url(userData.email, {
+      s: "30", // size
+      r: "pg", // rating
+      d: "mm" //default
+    });
+    user.avatar = avatar;
     dispatch({
       type: SET_CURRENT_USER,
       payload: user
@@ -104,6 +111,12 @@ export const loginSavedUser = history => async dispatch => {
     const user = await Auth.currentAuthenticatedUser({
       bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
     });
+    const avatar = gravatar.url(user.attributes.email, {
+      s: "30", // size
+      r: "pg", // rating
+      d: "mm" //default
+    });
+    user.avatar = avatar;
     dispatch({
       type: SET_CURRENT_USER,
       payload: user
