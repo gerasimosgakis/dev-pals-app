@@ -98,7 +98,7 @@ class AddEducation extends Component {
                 <TextFieldGroup
                   placeholder="from"
                   name="from"
-                  type="date"
+                  type="month"
                   value={this.state.from}
                   onChange={this.onChange}
                 />
@@ -106,7 +106,7 @@ class AddEducation extends Component {
                 <TextFieldGroup
                   placeholder="to"
                   name="to"
-                  type="date"
+                  type="month"
                   value={this.state.to}
                   onChange={this.onChange}
                   disabled={this.state.disabled ? "disabled" : ""}
