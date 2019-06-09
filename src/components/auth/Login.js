@@ -81,7 +81,7 @@ class Login extends Component {
       //     </div>
       //   </div>
       // </div>
-      <div className="login">
+      <div className="login contain">
         <div className="login__header">
           <h1>Log In</h1>
           <p className="header-label">Sign in to your DevPals account</p>

@@ -90,7 +90,7 @@ class Navbar extends Component {
                     <a
                       href="_target"
                       rel="noopener noreferrer"
-                      className="nav-link"
+                      className="nav-link mt-half"
                       onClick={this.onLogout}
                     >
                       Logout

@@ -32,7 +32,7 @@ class Landing extends Component {
       //     </div>
       //   </div>
       // </div>
-      <div className="landing">
+      <div className="landing contain">
         <div className="landing__logo">
           <img src={logo} alt="logo" className="landing__logo-image" />
         </div>
