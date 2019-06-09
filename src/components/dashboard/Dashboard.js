@@ -70,7 +70,7 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="dashboard">
+      <div className="dashboard contain">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

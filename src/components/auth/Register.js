@@ -201,7 +201,7 @@ class Register extends Component {
       //     </div>
       //   </div>
       // </div>
-      <div className="register">
+      <div className="register contain">
         <div className="register__header">
           <h1>Sign Up</h1>
           <p className="header-label">Create your DevPals account</p>
