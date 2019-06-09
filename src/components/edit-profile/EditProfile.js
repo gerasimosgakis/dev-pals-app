@@ -35,6 +35,7 @@ class CreateProfile extends Component {
   }
 
   componentDidMount() {
+    console.log(this.state);
     const currentUserId = this.props.auth.user.username;
     this.props.getCurrentProfile(currentUserId);
   }
@@ -87,7 +88,7 @@ class CreateProfile extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
+    console.log(this.props.profile.profile[0].eduData);
     const profileData = {
       userId: this.props.auth.user.username,
       handle: this.state.handle,
@@ -105,7 +106,7 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram,
       expData: this.state.expData,
-      eduData: this.state.eduData
+      eduData: this.props.profile.profile[0].eduData
     };
 
     const currentUserId = this.props.auth.user.username;
