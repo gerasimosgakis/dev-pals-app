@@ -51,7 +51,7 @@ class App extends Component {
               isAuthenticated={this.state.isAuthenticated}
               onAuthChange={this.userHasAuthenticated}
             />
-            <div>
+            <div class="main-content">
               <Routes childProps={childProps} />
             </div>
             <Footer />

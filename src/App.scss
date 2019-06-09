@@ -12,6 +12,7 @@
 @import "styles/ProfileHeader";
 @import "styles/ProfileCreds";
 @import "styles/ProfileSkills";
+@import "styles/ProfileGithub";
 
 $color_1: #bbb;
 $background_color_1: rgba(0, 0, 0, 0.7);
@@ -19,6 +20,13 @@ $background_color_1: rgba(0, 0, 0, 0.7);
 body {
   font: $font;
   line-height: 1;
+  background: hsla(0, 0%, 94%, 1);
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: auto;
+  background: white;
 }
 
 a {
