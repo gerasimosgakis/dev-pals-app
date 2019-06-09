@@ -1,12 +1,33 @@
 @import "styles/Landing";
 @import "styles/fonts";
 @import "styles/colors";
+@import "styles/buttons";
 @import "styles/spacing";
+@import "styles/layout";
 @import "styles/ProfileItem";
-@import 'styles/Chat';
+@import "styles/Chat";
+@import "styles/Login";
+@import "styles/Register";
+@import "styles/CreateProfile";
+@import "styles/ProfileHeader";
+@import "styles/ProfileCreds";
+@import "styles/ProfileSkills";
+@import "styles/ProfileGithub";
 
 $color_1: #bbb;
 $background_color_1: rgba(0, 0, 0, 0.7);
+
+body {
+  font: $font;
+  line-height: 1;
+  background: hsla(0, 0%, 94%, 1);
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+}
 
 a {
   text-decoration: none;

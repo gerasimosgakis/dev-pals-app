@@ -21,8 +21,10 @@ class Navbar extends Component {
     this.setState({ isAuthenticated: false });
   };
   render() {
+    const { auth } = this.props;
+
     return (
-      <nav className="navbar navbar-expand-sm navbar-light  mb-4">
+      <nav className="navbar navbar-expand-sm navbar-light">
         <div className="container">
           <Link className="navbar-brand" to="/">
             DevPals
@@ -74,16 +76,27 @@ class Navbar extends Component {
 
             <ul className="navbar-nav ml-auto">
               {this.props.auth.isAuthenticated ? (
-                <li className="nav-item">
-                  <a
-                    href="_target"
-                    rel="noopener noreferrer"
-                    className="nav-link"
-                    onClick={this.onLogout}
-                  >
-                    Logout
-                  </a>
-                </li>
+                <Fragment>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/dashboard">
+                      <img
+                        className="rounded-circle d-none d-md-block"
+                        src={auth.user.avatar}
+                        alt
+                      />
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      href="_target"
+                      rel="noopener noreferrer"
+                      className="nav-link"
+                      onClick={this.onLogout}
+                    >
+                      Logout
+                    </a>
+                  </li>
+                </Fragment>
               ) : (
                 <Fragment>
                   <li className="nav-item">
