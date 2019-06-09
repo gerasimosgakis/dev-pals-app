@@ -15,11 +15,11 @@ class ProfileCreds extends Component {
             <p>{exp.title}</p>
             <p>{exp.company}</p>
             <p className="help-text">
-              <Moment format="DD/MM/YYYY">{exp.from}</Moment> -{" "}
+              <Moment format="MMMM YYYY">{exp.from}</Moment> -{" "}
               {exp.to === null ? (
                 "Now"
               ) : (
-                <Moment format="DD/MM/YYYY">{exp.to}</Moment>
+                <Moment format="MMMM YYYY">{exp.to}</Moment>
               )}
             </p>
           </span>
@@ -31,11 +31,11 @@ class ProfileCreds extends Component {
       // <li key={exp._id} className="list-group-item">
       //   <h4>{exp.company}</h4>
       // <p>
-      //   <Moment format="DD/MM/YYYY">{exp.from}</Moment> -{" "}
+      //   <Moment format="MMMM YYYY">{exp.from}</Moment> -{" "}
       //   {exp.to === null ? (
       //     "Now"
       //   ) : (
-      //     <Moment format="DD/MM/YYYY">{exp.to}</Moment>
+      //     <Moment format="MMMM YYYY">{exp.to}</Moment>
       //   )}
       // </p>
       // <p>
@@ -68,11 +68,11 @@ class ProfileCreds extends Component {
             <p>{edu.degree}</p>
             <p>{edu.school}</p>
             <p className="help-text">
-              <Moment format="DD/MM/YYYY">{edu.from}</Moment> -{" "}
+              <Moment format="MMMM YYYY">{edu.from}</Moment> -{" "}
               {edu.to === null ? (
                 "Now"
               ) : (
-                <Moment format="DD/MM/YYYY">{edu.to}</Moment>
+                <Moment format="MMMM YYYY">{edu.to}</Moment>
               )}
             </p>
           </span>
@@ -87,11 +87,11 @@ class ProfileCreds extends Component {
     //   <li key={edu._id}>
     //     <h4>{edu.school}</h4>
     //     <p>
-    //       <Moment format="DD/MM/YYYY">{edu.from}</Moment> -{" "}
+    //       <Moment format="MMMM YYYY">{edu.from}</Moment> -{" "}
     //       {edu.to === null ? (
     //         "Now"
     //       ) : (
-    //         <Moment format="DD/MM/YYYY">{edu.to}</Moment>
+    //         <Moment format="MMMM YYYY">{edu.to}</Moment>
     //       )}
     //     </p>
     //     <p>
