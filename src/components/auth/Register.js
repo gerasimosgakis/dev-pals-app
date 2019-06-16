@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-
-import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  ControlLabel
-} from "react-bootstrap";
 import TextFieldGroup from "../common/TextFieldGroup";
-
 import { connect } from "react-redux";
 import { registerUser, confirmUser } from "../../actions/authActions";
 
@@ -64,28 +56,6 @@ class Register extends Component {
 
     this.props.registerUser(newUser, this.props.history);
 
-    // try {
-    //   const newUser = await Auth.signUp({
-    //     username: this.state.email,
-    //     password: this.state.password
-    //   });
-    //   this.setState({
-    //     newUser
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    //   if (err.code === "UsernameExistsException") {
-    //     await Auth.resendSignUp(this.state.email);
-    //     const newUser = {
-    //       username: this.state.email,
-    //       password: this.state.password
-    //     };
-    //     this.setState({
-    //       newUser
-    //     });
-    //   }
-    // }
-
     this.setState({ isLoading: false });
   };
 
@@ -100,17 +70,6 @@ class Register extends Component {
     };
 
     this.props.confirmUser(userConfirm, this.props.history);
-
-    // try {
-    //   await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
-    //   await Auth.signIn(this.state.email, this.state.password);
-
-    //   this.props.userHasAuthenticated(true);
-    //   this.props.history.push("/");
-    // } catch (err) {
-    //   alert(err.message);
-    //   this.setState({ isLoading: false });
-    // }
   };
 
   renderConfirmationForm() {
@@ -123,17 +82,9 @@ class Register extends Component {
           value={this.state.confirmationCode}
           onChange={this.onChange}
         />
-        {/* <LoaderButton
-          block
-          beSize="large"
-          disabled={!this.validateConfirmationForm()}
-          type="submit"
-          isLoading={this.state.isLoading}
-          text="Verify"
-          loadingText="Verifying..."
-        /> */}
-        {/* <input type="submit" className="btn btn-info btn-block mt-4" /> */}
-        <button className="register__form-buttons submit-btn">Submit</button>
+        <button className="register__form-buttons button submit-btn">
+          Submit
+        </button>
       </form>
     );
   }
@@ -178,7 +129,6 @@ class Register extends Component {
           text="Signup"
           loadingText="Signing up…"
         /> */}
-        {/* <input type="submit" className="btn btn-info btn-block mt-4" /> */}
         <button className="register__form-buttons button submit-btn">
           Sign Up
         </button>
@@ -188,19 +138,6 @@ class Register extends Component {
 
   render() {
     return (
-      // <div className="register">
-      //   <div className="container">
-      //     <div className="row">
-      //       <div className="col-md-8 m-auto">
-      //         <h1 className="display-4 text-center">Sign Up</h1>
-      //         <p className="lead text-center">Create your DevPals account</p>
-      //         {this.props.auth.isAuthenticated && !this.props.auth.userConfirmed
-      //           ? this.renderConfirmationForm()
-      //           : this.renderForm()}
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
       <div className="register contain">
         <div className="register__header">
           <h1>Sign Up</h1>
