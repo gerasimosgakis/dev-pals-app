@@ -16,6 +16,7 @@ import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import NotFound from "./components/not-found/NotFound";
 import Chat from "./components/chat/Chat";
+import Settings from "./components/settings/Settings";
 
 export default function Routes({ childProps }) {
   return (
@@ -54,6 +55,7 @@ export default function Routes({ childProps }) {
       <PrivateRoute exact path="/feed" component={Posts} />
       <PrivateRoute exact path="/post/:id" component={Post} />
       <PrivateRoute exact path="/chat" component={Chat} />
+      <PrivateRoute exact path="/settings" component={Settings} />
     </Switch>
   );
 }

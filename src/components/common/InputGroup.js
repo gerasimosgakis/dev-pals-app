@@ -15,6 +15,7 @@ const InputGroup = ({ name, placeholder, value, icon, type, onChange }) => {
         placeholder={placeholder}
         name={name}
         value={value}
+        type={type}
         onChange={onChange}
       />
     </div>
