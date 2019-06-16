@@ -103,6 +103,30 @@ export const loginUser = (userData, history) => async dispatch => {
       type: GET_ERRORS,
       payload: err
     });
+    if (err.code === "UserNotConfirmedException") {
+      history.push("/register");
+      try {
+        await Auth.resendSignUp(userData.email);
+        const newUser = {
+          user: {
+            username: userData.email,
+            password: userData.password,
+            attributes: {
+              name: userData.name
+            }
+          }
+        };
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: newUser
+        });
+      } catch (err) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: err
+        });
+      }
+    }
   }
 };
 
