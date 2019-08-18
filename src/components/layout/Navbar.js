@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { logoutUser } from "../../actions/authActions";
-import { clearCurrentProfile } from "../../actions/profileActions";
+import { logoutUser } from "../../redux/actions/authActions";
+import { clearCurrentProfile } from "../../redux/actions/profileActions";
 import { connect } from "react-redux";
 
 class Navbar extends Component {

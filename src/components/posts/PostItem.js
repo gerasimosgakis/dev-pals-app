@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import { deletePost, addLike, removeLike } from "../../actions/postActions";
+import {
+  deletePost,
+  addLike,
+  removeLike
+} from "../../redux/actions/postActions";
 
 class PostItem extends Component {
   onDeleteClick(id) {

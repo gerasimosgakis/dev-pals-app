@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
-import { clearErrors } from "../../actions/errorActions";
+import { loginUser } from "../../redux/actions/authActions";
+import { clearErrors } from "../../redux/actions/errorActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {

@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 
 import logo from "../../logo_transparent.png";
 import { connect } from "react-redux";
-import { loginSavedUser } from "../../actions/authActions";
+import { loginSavedUser } from "../../redux/actions/authActions";
 class Landing extends Component {
   componentDidMount() {
     this.props.loginSavedUser();

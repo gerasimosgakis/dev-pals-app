@@ -8,7 +8,7 @@ import ProfileCreds from "./ProfileCreds";
 import ProfileGithub from "./ProfileGithub";
 import ProfileSkills from "./ProfileSkills";
 import Spinner from "../common/Spinner";
-import { getProfileByHandle } from "../../actions/profileActions";
+import { getProfileByHandle } from "../../redux/actions/profileActions";
 
 class Profile extends Component {
   componentDidMount() {
